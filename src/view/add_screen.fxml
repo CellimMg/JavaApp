@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddScreenController">
+   <children>
+      <Label fx:id="lblHeaderCadastro" layoutX="215.0" layoutY="21.0" text="CADASTRO DE ATLETA">
+         <font>
+            <Font name="System Bold" size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnSalvar" layoutX="300.0" layoutY="420.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #228B22;" text="Salvar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <VBox layoutX="132.0" layoutY="85.0" prefHeight="354.0" prefWidth="436.0">
+         <children>
+            <Label fx:id="lblDadosPessoais" text="Dados pessoais">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="25.0" prefWidth="500.0">
+               <children>
+                  <TextField fx:id="tfNomeCompleto" prefHeight="25.0" prefWidth="315.0" promptText="Nome completo">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="tfIdade" prefHeight="25.0" prefWidth="100.0" promptText="Idade" />
+               </children>
+            </HBox>
+            <HBox prefHeight="25.0" prefWidth="500.0">
+               <children>
+                  <TextField fx:id="tfCidade" prefHeight="25.0" prefWidth="200.0" promptText="Cidade">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="tfEstado" prefHeight="25.0" prefWidth="82.0" promptText="Estado">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </TextField>
+                  <TextField fx:id="tfPais" prefHeight="25.0" prefWidth="113.0" promptText="País" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+            <HBox prefHeight="25.0" prefWidth="500.0">
+               <children>
+                  <TextField fx:id="tfNomeMae" prefHeight="25.0" prefWidth="315.0" promptText="Nome da mãe">
+                     <HBox.margin>
+                        <Insets bottom="40.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+            <Label fx:id="lblDadosAtletas" text="Dados de atleta">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Label>
+            <HBox prefHeight="25.0" prefWidth="500.0">
+               <children>
+                  <ComboBox fx:id="cbPosicao" prefHeight="25.0" prefWidth="127.0" promptText="Posição">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <ComboBox fx:id="cbPerna" prefHeight="25.0" prefWidth="127.0" promptText="Perna de chute">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </ComboBox>
+                  <TextField fx:id="tfAltura" prefHeight="25.0" prefWidth="109.0" promptText="Altura (cm)" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
