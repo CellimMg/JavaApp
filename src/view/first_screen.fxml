@@ -34,7 +34,7 @@
                   <Insets bottom="10.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnAdcJogador" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Adicionar Jogadores">
+            <Button fx:id="btnAdcJogador" mnemonicParsing="false" onAction="#apSceneAction" prefHeight="70.0" prefWidth="200.0" text="Adicionar Jogadores">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -45,7 +45,7 @@
                   <InnerShadow />
                </effect>
             </Button>
-            <Button fx:id="btnListJogador" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Listar Jogadores">
+            <Button fx:id="btnListJogador" mnemonicParsing="false" onAction="#lpSceneAction" prefHeight="70.0" prefWidth="200.0" text="Listar Jogadores">
                <font>
                   <Font size="18.0" />
                </font>
@@ -61,7 +61,7 @@
                   <Insets bottom="10.0" top="30.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="btnAdcPartidas" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Adicionar Partidas">
+            <Button fx:id="btnAdcPartidas" mnemonicParsing="false" onAction="#aptSceneAction" prefHeight="70.0" prefWidth="200.0" text="Adicionar Partidas">
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin>
@@ -72,7 +72,7 @@
                   <InnerShadow />
                </effect>
             </Button>
-            <Button fx:id="btnListPartidas" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Listar Partidas">
+            <Button fx:id="btnListPartidas" mnemonicParsing="false" onAction="#lptSceneAction" prefHeight="70.0" prefWidth="200.0" text="Listar Partidas">
                <font>
                   <Font size="18.0" />
                </font>

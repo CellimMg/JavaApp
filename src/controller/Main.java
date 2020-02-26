@@ -8,13 +8,57 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private static Stage stage;
+    private static Scene firstScene, addPlayerScene, listPlayerScene, addPartidaScene, listPartidaScene;
+
+
+
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("../view/first_screen.fxml"));
+
+        stage = primaryStage;
         primaryStage.setTitle("Gestão de Time");
+
+        Parent firstSceneFXML = FXMLLoader.load(getClass().getResource("../view/first_screen.fxml"));
+        firstScene = new Scene(firstSceneFXML);
+
+        Parent addPlayerSceneFXML = FXMLLoader.load(getClass().getResource("../view/addplayer_screen.fxml"));
+        addPlayerScene = new Scene(addPlayerSceneFXML);
+
+        Parent listPlayerSceneFXML = FXMLLoader.load(getClass().getResource("../view/listplayer_screen.fxml"));
+        listPlayerScene = new Scene(listPlayerSceneFXML);
+
+        Parent addPartidaSceneFXML = FXMLLoader.load(getClass().getResource("../view/addpartida_screen.fxml"));
+        addPartidaScene = new Scene(addPartidaSceneFXML);
+
+        Parent listPartidaSceneFXML = FXMLLoader.load(getClass().getResource("../view/listpartida_screen.fxml"));
+        listPartidaScene = new Scene(listPartidaSceneFXML);
+
+
         primaryStage.setResizable(false);
-        primaryStage.setScene(new Scene(root));
+        primaryStage.setScene(firstScene);
         primaryStage.show();
+    }
+
+
+    public static void changeScene(String src){
+        switch (src){
+            case "main":
+                stage.setScene(firstScene);
+                break;
+            case "addPlayer":
+                stage.setScene(addPlayerScene);
+                break;
+            case "listPlayer":
+                stage.setScene(listPlayerScene);
+                break;
+            case "addPartida":
+                stage.setScene(addPartidaScene);
+                break;
+            case "listPartida":
+                stage.setScene(listPartidaScene);
+                break;
+        }
     }
 
 

@@ -1,62 +1,36 @@
 package controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 
+import javax.swing.*;
+
 
 public class FirstScreenController {
 
-    @FXML
-    private Label lblHeader;
+
 
     @FXML
-    private ImageView imgHeader;
+    protected void apSceneAction(ActionEvent e){
+        Main.changeScene("addPlayer");
+    }
 
     @FXML
-    private Label lblJogadores;
+    protected void lpSceneAction(ActionEvent e){
+        Main.changeScene("listPlayer");
+    }
 
     @FXML
-    private Button btnAdcJogador;
+    protected void aptSceneAction(ActionEvent e){
+        Main.changeScene("addPartida");
+    }
 
     @FXML
-    private Button btnListJogador;
-
-    @FXML
-    private Label lblPartidas;
-
-    @FXML
-    private Button btnAdcPartidas;
-
-    @FXML
-    private Button btnListPartidas;
-
-    @FXML
-    private Label lblLastGame;
-
-    @FXML
-    private Label lblTime;
-
-    @FXML
-    private ImageView imgGame;
-
-    @FXML
-    private Label lblPlacar1;
-
-    @FXML
-    private Label lblVs;
-
-    @FXML
-    private Label lblTime2;
-
-    @FXML
-    private ImageView imgGame2;
-
-    @FXML
-    private Label lblPlacar2;
-
-    @FXML
-    private Button btnVerPartidas;
+    protected void lptSceneAction(ActionEvent e){
+        Main.changeScene("listPartida");
+    }
 
 }
