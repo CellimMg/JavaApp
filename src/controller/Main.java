@@ -21,6 +21,8 @@ public class Main extends Application {
         System.out.println(jogador);
         System.exit(0);
 
+
+
         stage = primaryStage;
         primaryStage.setTitle("Gestão de Time");
 

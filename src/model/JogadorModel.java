@@ -6,14 +6,51 @@ public class JogadorModel {
 
     private String nome, idade, cidade, estado, pais, nomeMae, posicao, pernaChute, altura;
 
-    public JogadorModel(String nome, String idade, String cidade) {
+    public JogadorModel(String joao, String s, String bh) {
+    }
+
+
+    @Override
+    public String toString() {
+        return "JogadorModel{" +
+                "_id=" + _id +
+                ", nome='" + nome + '\'' +
+                ", idade='" + idade + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", estado='" + estado + '\'' +
+                ", pais='" + pais + '\'' +
+                ", nomeMae='" + nomeMae + '\'' +
+                ", posicao='" + posicao + '\'' +
+                ", pernaChute='" + pernaChute + '\'' +
+                ", altura='" + altura + '\'' +
+                '}';
+    }
+
+    public JogadorModel(Integer _id, String nome, String idade, String cidade, String estado, String pais,
+                        String nomeMae, String posicao, String pernaChute, String altura) {
+        this._id = _id;
         this.nome = nome;
         this.idade = idade;
         this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+        this.nomeMae = nomeMae;
+        this.posicao = posicao;
+        this.pernaChute = pernaChute;
+        this.altura = altura;
     }
 
-    public String toString(){
-        return "Jogador: "+nome+idade+cidade;
+    public JogadorModel(String nome, String idade, String cidade, String estado, String pais, String nomeMae,
+                        String posicao, String pernaChute, String altura) {
+        this.nome = nome;
+        this.idade = idade;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.pais = pais;
+        this.nomeMae = nomeMae;
+        this.posicao = posicao;
+        this.pernaChute = pernaChute;
+        this.altura = altura;
     }
 
     public Integer get_id() {
@@ -96,34 +133,6 @@ public class JogadorModel {
         this.altura = altura;
     }
 
-    /*
-    public JogadorModel(Integer _id, String nome, String idade, String cidade, String estado, String pais,
-                        String nomeMae, String posicao, String pernaChute, String altura) {
-        this._id = _id;
-        this.nome = nome;
-        this.idade = idade;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.pais = pais;
-        this.nomeMae = nomeMae;
-        this.posicao = posicao;
-        this.pernaChute = pernaChute;
-        this.altura = altura;
-    }
-    */
 
-
-    /*public JogadorModel(String nome, String idade, String cidade, String estado, String pais, String nomeMae,
-                        String posicao, String pernaChute, String altura) {
-        this.nome = nome;
-        this.idade = idade;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.pais = pais;
-        this.nomeMae = nomeMae;
-        this.posicao = posicao;
-        this.pernaChute = pernaChute;
-        this.altura = altura;
-    }*/
 
 }
