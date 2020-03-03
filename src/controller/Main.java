@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.DAO.JogadorDAO;
 import model.JogadorModel;
 
 public class Main extends Application {
@@ -16,11 +17,6 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-        JogadorModel jogador = new JogadorModel("Joao", "15", "Bh");
-        System.out.println(jogador);
-        System.exit(0);
-
 
 
         stage = primaryStage;

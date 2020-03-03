@@ -6,14 +6,9 @@ public class JogadorModel {
 
     private String nome, idade, cidade, estado, pais, nomeMae, posicao, pernaChute, altura;
 
-    public JogadorModel(String joao, String s, String bh) {
-    }
-
-
     @Override
     public String toString() {
         return "JogadorModel{" +
-                "_id=" + _id +
                 ", nome='" + nome + '\'' +
                 ", idade='" + idade + '\'' +
                 ", cidade='" + cidade + '\'' +
@@ -39,6 +34,8 @@ public class JogadorModel {
         this.pernaChute = pernaChute;
         this.altura = altura;
     }
+
+    public JogadorModel(){}
 
     public JogadorModel(String nome, String idade, String cidade, String estado, String pais, String nomeMae,
                         String posicao, String pernaChute, String altura) {

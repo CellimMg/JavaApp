@@ -4,11 +4,13 @@ public class PartidaModel {
 
     private Integer _id;
 
-    private String adversario, resultado, local;
+    private String adversario, resultado, local, golsTime, golsAdv;
 
-    private int golsTime, golsAdv;
+    public PartidaModel() {
 
-    public PartidaModel(Integer _id, String adversario, String resultado, String local, int golsTime, int golsAdv) {
+    }
+
+    public PartidaModel(Integer _id, String adversario, String resultado, String local, String golsTime, String golsAdv) {
         this._id = _id;
         this.adversario = adversario;
         this.resultado = resultado;
@@ -17,7 +19,7 @@ public class PartidaModel {
         this.golsAdv = golsAdv;
     }
 
-    public PartidaModel(String adversario, String resultado, String local, int golsTime, int golsAdv) {
+    public PartidaModel(String adversario, String resultado, String local, String golsTime, String golsAdv) {
         this.adversario = adversario;
         this.resultado = resultado;
         this.local = local;
@@ -69,19 +71,19 @@ public class PartidaModel {
         this.local = local;
     }
 
-    public int getGolsTime() {
+    public String getGolsTime() {
         return golsTime;
     }
 
-    public void setGolsTime(int golsTime) {
+    public void setGolsTime(String golsTime) {
         this.golsTime = golsTime;
     }
 
-    public int getGolsAdv() {
+    public String getGolsAdv() {
         return golsAdv;
     }
 
-    public void setGolsAdv(int golsAdv) {
+    public void setGolsAdv(String golsAdv) {
         this.golsAdv = golsAdv;
     }
 }
