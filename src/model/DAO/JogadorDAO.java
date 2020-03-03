@@ -71,6 +71,8 @@ public class JogadorDAO {
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionFactory.closeConnection(connection, stmt);
         }
         return jm;
     }
@@ -101,6 +103,8 @@ public class JogadorDAO {
 
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            ConnectionFactory.closeConnection(connection, stmt);
         }
     }
 

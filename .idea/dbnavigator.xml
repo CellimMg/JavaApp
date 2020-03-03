@@ -33,13 +33,7 @@
       <console name="Mysql" type="STANDARD" schema="" session="Main" />
     </connection>
     <connection id="e06c31fd-f47f-4da9-8277-b00dca9d06e0">
-      <console name="Connection 1" type="STANDARD" schema="" session="Main"><![CDATA[CREATE TABLE Jogador (
-    PersonID int,
-    LastName varchar(255),
-    FirstName varchar(255),
-    Address varchar(255),
-    City varchar(255)
-);]]></console>
+      <console name="Connection 1" type="STANDARD" schema="" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">

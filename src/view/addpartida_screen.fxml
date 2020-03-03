@@ -104,5 +104,15 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Button fx:id="btnSalvar13" layoutX="828.0" layoutY="656.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #ff0000;" text="Excluir" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSalvar111" layoutX="984.0" layoutY="656.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #ffa000;" text="Editar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

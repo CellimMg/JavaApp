@@ -5,19 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import model.DAO.JogadorDAO;
-import model.JogadorModel;
+
 
 public class Main extends Application {
 
     private static Stage stage;
-    private static Scene firstScene, addPlayerScene, listPlayerScene, addPartidaScene, listPartidaScene;
-
-
+    private static Scene firstScene, addPlayerScene,  addPartidaScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
 
         stage = primaryStage;
         primaryStage.setTitle("Gestão de Time");
@@ -28,14 +24,9 @@ public class Main extends Application {
         Parent addPlayerSceneFXML = FXMLLoader.load(getClass().getResource("../view/addplayer_screen.fxml"));
         addPlayerScene = new Scene(addPlayerSceneFXML);
 
-        Parent listPlayerSceneFXML = FXMLLoader.load(getClass().getResource("../view/listplayer_screen.fxml"));
-        listPlayerScene = new Scene(listPlayerSceneFXML);
-
         Parent addPartidaSceneFXML = FXMLLoader.load(getClass().getResource("../view/addpartida_screen.fxml"));
         addPartidaScene = new Scene(addPartidaSceneFXML);
 
-        Parent listPartidaSceneFXML = FXMLLoader.load(getClass().getResource("../view/listpartida_screen.fxml"));
-        listPartidaScene = new Scene(listPartidaSceneFXML);
 
 
         primaryStage.setResizable(false);
@@ -52,14 +43,8 @@ public class Main extends Application {
             case "addPlayer":
                 stage.setScene(addPlayerScene);
                 break;
-            case "listPlayer":
-                stage.setScene(listPlayerScene);
-                break;
             case "addPartida":
                 stage.setScene(addPartidaScene);
-                break;
-            case "listPartida":
-                stage.setScene(listPartidaScene);
                 break;
         }
     }

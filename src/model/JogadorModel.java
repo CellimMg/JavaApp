@@ -35,7 +35,9 @@ public class JogadorModel {
         this.altura = altura;
     }
 
-    public JogadorModel(){}
+    public JogadorModel(){
+
+    }
 
     public JogadorModel(String nome, String idade, String cidade, String estado, String pais, String nomeMae,
                         String posicao, String pernaChute, String altura) {
@@ -49,6 +51,8 @@ public class JogadorModel {
         this.pernaChute = pernaChute;
         this.altura = altura;
     }
+
+
 
     public Integer get_id() {
         return _id;
@@ -87,7 +91,9 @@ public class JogadorModel {
     }
 
     public void setEstado(String estado) {
+
         this.estado = estado;
+
     }
 
     public String getPais() {
