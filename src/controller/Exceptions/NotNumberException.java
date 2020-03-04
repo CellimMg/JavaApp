@@ -1,4 +1,7 @@
 package controller.Exceptions;
 
-public class NotNumberException {
+public class NotNumberException extends Exception {
+    public NotNumberException(String msg){
+        super(msg);
+    }
 }

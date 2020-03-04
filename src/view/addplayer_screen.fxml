@@ -96,14 +96,14 @@
             <Insets left="40.0" />
          </padding>
       </VBox>
-      <TableView layoutX="81.0" layoutY="340.0" prefHeight="285.0" prefWidth="849.0">
+      <TableView fx:id="tableViewJogador" layoutX="81.0" layoutY="340.0" prefHeight="285.0" prefWidth="849.0">
         <columns>
-          <TableColumn prefWidth="51.0" resizable="false" text="ID" />
-          <TableColumn prefWidth="385.3333435058594" resizable="false" text="NOME" />
-            <TableColumn minWidth="0.0" prefWidth="84.66665649414062" resizable="false" text="IDADE" />
-            <TableColumn prefWidth="97.00003051757812" resizable="false" text="POSIÇÃO" />
-            <TableColumn minWidth="0.0" prefWidth="95.3333740234375" resizable="false" text="ALTURA" />
-            <TableColumn minWidth="0.0" prefWidth="136.0" resizable="false" text="PERNA DE CHUTE" />
+          <TableColumn fx:id="col_id" prefWidth="51.0" resizable="false" text="ID" />
+          <TableColumn fx:id="col_nome" prefWidth="385.3333435058594" resizable="false" text="NOME" />
+            <TableColumn fx:id="col_idade" minWidth="0.0" prefWidth="84.66665649414062" resizable="false" text="IDADE" />
+            <TableColumn fx:id="col_posicao" prefWidth="97.00003051757812" resizable="false" text="POSIÇÃO" />
+            <TableColumn fx:id="col_altura" minWidth="0.0" prefWidth="95.3333740234375" resizable="false" text="ALTURA" />
+            <TableColumn fx:id="col_perna" minWidth="0.0" prefWidth="136.0" resizable="false" text="PERNA DE CHUTE" />
         </columns>
       </TableView>
       <HBox alignment="CENTER" layoutX="89.0" layoutY="649.0" prefHeight="37.0" prefWidth="850.0" spacing="50.0">

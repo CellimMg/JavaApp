@@ -1,5 +1,11 @@
 package model.DAO;
 
+import controller.Exceptions.MoreThanThreeException;
+import controller.Exceptions.NotNumberException;
+import controller.Exceptions.NotStringException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import model.JogadorModel;
 import model.MYSQL.connection.ConnectionFactory;
 
@@ -43,11 +49,11 @@ public class JogadorDAO {
     }
 
 
-    public List<JogadorModel> read() {
+    public ObservableList<JogadorModel> read() {
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<JogadorModel> jm = new ArrayList<>();
+        ObservableList<JogadorModel> jm = FXCollections.observableArrayList();
 
         try {
             stmt = connection.prepareStatement("SELECT * FROM jogador");
@@ -59,17 +65,13 @@ public class JogadorDAO {
                 j.set_id(rs.getInt("id"));
                 j.setNome(rs.getString("nome"));
                 j.setAltura(rs.getString("altura"));
-                j.setCidade(rs.getString("cidade"));
-                j.setEstado(rs.getString("estado"));
-                j.setPais(rs.getString("pais"));
-                j.setNomeMae(rs.getString("nomeMae"));
                 j.setPernaChute(rs.getString("pernaChute"));
                 j.setIdade(rs.getString("idade"));
                 j.setPosicao(rs.getString("posicao"));
 
                 jm.add(j);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NotStringException | NotNumberException | MoreThanThreeException e) {
             e.printStackTrace();
         } finally {
             ConnectionFactory.closeConnection(connection, stmt);

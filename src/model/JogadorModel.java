@@ -1,5 +1,9 @@
 package model;
 
+import controller.Exceptions.MoreThanThreeException;
+import controller.Exceptions.NotNumberException;
+import controller.Exceptions.NotStringException;
+
 public class JogadorModel {
 
     private Integer _id;
@@ -58,41 +62,50 @@ public class JogadorModel {
         return _id;
     }
 
-    public void set_id(Integer _id) {
-        this._id = _id;
+    public void set_id(Integer _id) throws NotNumberException {
+
+        if(_id.toString().matches("[0-9]+")) this._id = _id;
+        else throw new NotNumberException("Não tem só numeros");
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nome) throws NotStringException {
+        if (nome.matches("^[ a-zA-Z á]*$")) this.nome = nome;
+        else throw new NotStringException("Não é só String");
     }
 
     public String getIdade() {
         return idade;
     }
 
-    public void setIdade(String idade) {
-        this.idade = idade;
+    public void setIdade(String idade) throws NotNumberException {
+
+        if(idade.matches("[0-9]+")) this.idade = idade;
+        else throw new NotNumberException("Não tem só numeros");
+
     }
 
     public String getCidade() {
         return cidade;
     }
 
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public void setCidade(String cidade) throws NotStringException {
+
+        if (cidade.matches("^[ a-zA-Z á]*$")) this.cidade = cidade;
+        else throw new NotStringException("Não é só String");
     }
 
     public String getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(String estado) throws NotStringException {
 
-        this.estado = estado;
+        if (estado.matches("^[ a-zA-Z á]*$")) this.estado = estado;
+        else throw new NotStringException("Não é só String");
 
     }
 
@@ -100,16 +113,20 @@ public class JogadorModel {
         return pais;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setPais(String pais) throws NotStringException {
+
+        if (pais.matches("^[ a-zA-Z á]*$")) this.pais = pais;
+        else throw new NotStringException("Não é só String");
     }
 
     public String getNomeMae() {
         return nomeMae;
     }
 
-    public void setNomeMae(String nomeMae) {
-        this.nomeMae = nomeMae;
+    public void setNomeMae(String nomeMae) throws NotStringException {
+
+        if (nomeMae.matches("^[ a-zA-Z á]*$")) this.nomeMae = nomeMae;
+        else throw new NotStringException("Não é só String");
     }
 
     public String getPosicao() {
@@ -132,8 +149,17 @@ public class JogadorModel {
         return altura;
     }
 
-    public void setAltura(String altura) {
-        this.altura = altura;
+    public void setAltura(String altura) throws NotNumberException, MoreThanThreeException {
+        if (altura.matches("[0-9]+")){
+            if(altura.length() == 3){
+                this.altura = altura;
+            }else{
+                throw new MoreThanThreeException("Não tem 3");
+            }
+        }else{
+            throw new NotNumberException("Não é só número");
+        }
+
     }
 
 

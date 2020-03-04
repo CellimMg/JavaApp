@@ -11,8 +11,6 @@ import javax.swing.*;
 
 public class FirstScreenController {
 
-
-
     @FXML
     protected void apSceneAction(ActionEvent e){
         Main.changeScene("addPlayer");
