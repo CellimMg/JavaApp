@@ -11,16 +11,12 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.DAO.JogadorDAO;
 import model.JogadorModel;
-import model.MYSQL.connection.ConnectionFactory;
 
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Connection;
 
 public class AddPlayerController {
 
     @FXML
     protected void initialize(){
-
         resetTable();
         cbPosicao.getItems().addAll(
                 "GOL", "LTD", "LTE", "ZAG", "VOL", "MEI", "ATA"
@@ -35,6 +31,8 @@ public class AddPlayerController {
         JogadorDAO jogadorDAO = new JogadorDAO();
 
         jogadorList = jogadorDAO.read();
+
+        System.out.println(jogadorList);
 
         col_id.setCellValueFactory(new PropertyValueFactory<>("_id"));
         col_nome.setCellValueFactory(new PropertyValueFactory<>("nome"));

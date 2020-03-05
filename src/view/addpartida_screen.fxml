@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="720.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddPartidaController">
    <children>
       <Label layoutX="219.0" layoutY="22.0" text="GESTÃO DE PARTIDAS">
          <font>
@@ -23,21 +23,21 @@
          <children>
             <HBox prefHeight="26.0" prefWidth="557.0" spacing="20.0">
                <children>
-                  <TextField editable="false" prefHeight="25.0" prefWidth="219.0" promptText="ID" />
-                  <TextField prefHeight="25.0" prefWidth="610.0" promptText="Nome do adversário" />
+                  <TextField fx:id="ifId" editable="false" prefHeight="25.0" prefWidth="219.0" promptText="ID" />
+                  <TextField fx:id="tfNome" prefHeight="25.0" prefWidth="610.0" promptText="Nome do adversário" />
                </children>
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </HBox>
-            <ComboBox prefHeight="25.0" prefWidth="202.0" promptText="Local da partida">
+            <ComboBox fx:id="cbLocal" prefHeight="25.0" prefWidth="202.0" promptText="Local da partida">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
             </ComboBox>
             <HBox alignment="CENTER" fillHeight="false" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="440.0">
                <children>
-                  <TextField prefWidth="150.0" promptText="Gols da equipe">
+                  <TextField fx:id="tfGolsP" prefWidth="150.0" promptText="Gols da equipe">
                      <HBox.margin>
                         <Insets right="20.0" />
                      </HBox.margin>
@@ -50,7 +50,7 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField prefHeight="8.0" prefWidth="150.0" promptText="Gols do adversário" />
+                  <TextField fx:id="tfGolsC" prefHeight="8.0" prefWidth="150.0" promptText="Gols do adversário" />
                </children>
             </HBox>
          </children>
@@ -58,7 +58,7 @@
             <Insets top="20.0" />
          </padding>
       </VBox>
-      <TableView layoutX="88.0" layoutY="272.0" prefHeight="344.0" prefWidth="563.0">
+      <TableView fx:id="tablePartida" layoutX="88.0" layoutY="272.0" prefHeight="344.0" prefWidth="563.0">
         <columns>
           <TableColumn prefWidth="55.0" resizable="false" text="ID" />
           <TableColumn prefWidth="168.66668701171875" resizable="false" text="NOME ADV." />
@@ -73,8 +73,8 @@
             <Font name="System Bold" size="25.0" />
          </font>
       </Label>
-      <ComboBox layoutX="789.0" layoutY="85.0" prefHeight="35.0" prefWidth="316.0" promptText="Autor do Gol" />
-      <TableView layoutX="790.0" layoutY="275.0" prefHeight="346.0" prefWidth="332.0">
+      <ComboBox fx:id="cbAutorGol" layoutX="789.0" layoutY="85.0" prefHeight="35.0" prefWidth="316.0" promptText="Autor do Gol" />
+      <TableView fx:id="tableGols" layoutX="790.0" layoutY="275.0" prefHeight="346.0" prefWidth="332.0">
         <columns>
           <TableColumn prefWidth="75.0" resizable="false" text="ID" />
           <TableColumn prefWidth="256.0" resizable="false" text="AUTO DO GOL" />
