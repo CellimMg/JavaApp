@@ -51,11 +51,10 @@ public class AddPlayerController {
     protected void btSalvarBD(ActionEvent e){
         JogadorModel j = new JogadorModel();
         JogadorDAO jogadorDAO = new JogadorDAO();
+        System.out.println(tfId.getText());
 
         try {
-            if (tfId.getText() != null){
-                j.set_id(Integer.parseInt(tfId.getText()));
-            }
+            if (!tfId.getText().isEmpty()) j.set_id(Integer.parseInt(tfId.getText()));
             j.setNome(tfNomeCompleto.getText());
             j.setNomeMae(tfNomeMae.getText());
             j.setIdade(tfIdade.getText());

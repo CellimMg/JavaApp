@@ -62,11 +62,7 @@ public class JogadorModel {
         return _id;
     }
 
-    public void set_id(Integer _id) throws NotNumberException {
-
-        if(_id.toString().matches("[0-9]+")) this._id = _id;
-        else throw new NotNumberException("Não tem só numeros");
-    }
+    public void set_id(Integer _id) {   this._id = _id; }
 
     public String getNome() {
         return nome;
