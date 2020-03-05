@@ -10,23 +10,15 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     private static Stage stage;
-    private static Scene firstScene, addPlayerScene,  addPartidaScene;
+    private static Scene firstScene;
 
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        stage = primaryStage;
         primaryStage.setTitle("Gestão de Time");
 
         Parent firstSceneFXML = FXMLLoader.load(getClass().getResource("../view/first_screen.fxml"));
         firstScene = new Scene(firstSceneFXML);
-
-        Parent addPlayerSceneFXML = FXMLLoader.load(getClass().getResource("../view/addplayer_screen.fxml"));
-        addPlayerScene = new Scene(addPlayerSceneFXML);
-
-        Parent addPartidaSceneFXML = FXMLLoader.load(getClass().getResource("../view/addpartida_screen.fxml"));
-        addPartidaScene = new Scene(addPartidaSceneFXML);
-
 
 
         primaryStage.setResizable(false);
@@ -34,20 +26,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
-    public static void changeScene(String src){
-        switch (src){
-            case "main":
-                stage.setScene(firstScene);
-                break;
-            case "addPlayer":
-                stage.setScene(addPlayerScene);
-                break;
-            case "addPartida":
-                stage.setScene(addPartidaScene);
-                break;
-        }
-    }
 
 
     public static void main(String[] args) {

@@ -2,6 +2,7 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
@@ -20,20 +21,27 @@ public class AddPartidaController {
     protected void initialize(){
 
         JogadorDAO jogadorDAO = new JogadorDAO();
-        jogadorList = jogadorDAO.read();
 
+        for(int x = 0; x < jogadorDAO.read().toArray().length; x++){
+            nomes.add(jogadorDAO.read().get(x).getNome());
+            System.out.println(nomes);
+        }
 
         cbLocal.getItems().addAll(
           "C", "F"
         );
 
-        System.out.println(jogadorList);
-
-        cbAutorGol.getItems().addAll(
-                jogadorList
-        );
+        cbAutorGol.setItems(nomes);
     }
 
+
+
+
+    @FXML
+    protected void btnLoad(ActionEvent e){
+        JogadorDAO jogadorDAO = new JogadorDAO();
+        System.out.println(jogadorDAO.read());
+    }
     @FXML
     private TextField ifId;
 
@@ -53,10 +61,11 @@ public class AddPartidaController {
     private TableView<?> tablePartida;
 
     @FXML
-    private ComboBox<ObservableList<JogadorModel>> cbAutorGol;
+    private ComboBox<String> cbAutorGol;
 
     @FXML
     private TableView<?> tableGols;
 
-    ObservableList<JogadorModel> jogadorList = FXCollections.observableArrayList();
+    ObservableList<String> nomes = FXCollections.observableArrayList();
+
 }

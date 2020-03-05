@@ -108,6 +108,7 @@ public class AddPlayerController {
         }finally {
 
             resetTable();
+
             tfId.clear();
             tfNomeCompleto.clear();
             tfNomeMae.clear();
@@ -163,7 +164,23 @@ public class AddPlayerController {
             alert.showAndWait();
         }finally {
             resetTable();
+            tfId.clear();
+            tfNomeCompleto.clear();
+            tfNomeMae.clear();
+            tfIdade.clear();
+            tfCidade.clear();
+            tfEstado.clear();
+            tfPais.clear();
+            cbPosicao.setValue(null);
+            cbPerna.setValue(null);
+            tfAltura.clear();
         }
+    }
+
+    @FXML
+    protected void btnLoad(ActionEvent e){
+        JogadorDAO jogadorDAO = new JogadorDAO();
+        System.out.println(jogadorDAO.read());
     }
 
 
