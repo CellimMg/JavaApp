@@ -64,6 +64,10 @@ public class JogadorDAO {
 
                 j.set_id(rs.getInt("id"));
                 j.setNome(rs.getString("nome"));
+                j.setNomeMae(rs.getString("nomeMae"));
+                j.setCidade(rs.getString("cidade"));
+                j.setEstado(rs.getString("estado"));
+                j.setPais(rs.getString("pais"));
                 j.setAltura(rs.getString("altura"));
                 j.setPernaChute(rs.getString("pernaChute"));
                 j.setIdade(rs.getString("idade"));

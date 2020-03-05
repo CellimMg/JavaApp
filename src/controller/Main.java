@@ -15,9 +15,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
 
-        String teste = "teste";
-        System.out.println(teste.matches("/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/"));
-
         stage = primaryStage;
         primaryStage.setTitle("Gestão de Time");
 

@@ -31,6 +31,11 @@
             </Label>
             <HBox prefHeight="25.0" prefWidth="500.0">
                <children>
+                  <TextField fx:id="tfId" editable="false" prefHeight="25.0" prefWidth="100.0" promptText="ID">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </TextField>
                   <TextField fx:id="tfNomeCompleto" prefHeight="25.0" prefWidth="315.0" promptText="Nome completo">
                      <HBox.margin>
                         <Insets right="20.0" />
@@ -41,7 +46,6 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="tfIdade" prefHeight="25.0" prefWidth="100.0" promptText="Idade" />
                </children>
             </HBox>
             <HBox prefHeight="25.0" prefWidth="500.0">
@@ -56,7 +60,11 @@
                         <Insets right="20.0" />
                      </HBox.margin>
                   </TextField>
-                  <TextField fx:id="tfPais" prefHeight="25.0" prefWidth="113.0" promptText="País" />
+                  <TextField fx:id="tfPais" prefHeight="25.0" prefWidth="113.0" promptText="País">
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin></TextField>
+                  <TextField fx:id="tfIdade" prefHeight="25.0" prefWidth="100.0" promptText="Idade" />
                </children>
                <padding>
                   <Insets top="20.0" />
@@ -108,12 +116,12 @@
       </TableView>
       <HBox alignment="CENTER" layoutX="89.0" layoutY="649.0" prefHeight="37.0" prefWidth="850.0" spacing="50.0">
          <children>
-            <Button fx:id="btnSalvar1" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #ff0000;" text="Excluir" textFill="WHITE">
+            <Button fx:id="btnSalvar1" mnemonicParsing="false" onAction="#btnDelete" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #ff0000;" text="Excluir" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalvar2" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #ffa000;" text="Editar" textFill="WHITE">
+            <Button fx:id="btnSalvar2" mnemonicParsing="false" onAction="#btnEdit" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #ffa000;" text="Editar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
