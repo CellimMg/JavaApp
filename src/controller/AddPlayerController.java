@@ -49,7 +49,7 @@ public class AddPlayerController {
     protected void btSalvarBD(ActionEvent e){
         JogadorModel j = new JogadorModel();
         JogadorDAO jogadorDAO = new JogadorDAO();
-        System.out.println(tfId.getText());
+        
 
         try {
             if (!tfId.getText().isEmpty()) j.set_id(Integer.parseInt(tfId.getText()));
@@ -59,8 +59,8 @@ public class AddPlayerController {
             j.setCidade(tfCidade.getText());
             j.setEstado(tfEstado.getText());
             j.setPais(tfPais.getText());
-            j.setPosicao(cbPosicao.getSelectionModel().getSelectedItem().toString());
-            j.setPernaChute(cbPerna.getSelectionModel().getSelectedItem().toString());
+            j.setPosicao(cbPosicao.getSelectionModel().getSelectedItem());
+            j.setPernaChute(cbPerna.getSelectionModel().getSelectedItem());
             j.setAltura(tfAltura.getText());
 
 

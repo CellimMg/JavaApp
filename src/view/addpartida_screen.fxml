@@ -52,7 +52,11 @@
                   </Label>
                   <TextField fx:id="tfGolsC" prefHeight="8.0" prefWidth="150.0" promptText="Gols do adversário" />
                </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
             </HBox>
+            <ComboBox fx:id="cbResultado" prefHeight="25.0" prefWidth="202.0" promptText="Resultado" />
          </children>
          <padding>
             <Insets top="20.0" />
@@ -60,12 +64,12 @@
       </VBox>
       <TableView fx:id="tablePartida" layoutX="88.0" layoutY="272.0" prefHeight="344.0" prefWidth="563.0">
         <columns>
-          <TableColumn prefWidth="55.0" resizable="false" text="ID" />
-          <TableColumn prefWidth="168.66668701171875" resizable="false" text="NOME ADV." />
-            <TableColumn prefWidth="66.33331298828125" resizable="false" text="LOCAL" />
-            <TableColumn prefWidth="79.0" resizable="false" text="RESULTADO" />
-            <TableColumn prefWidth="98.66665649414062" resizable="false" text="GOLS DO TIME" />
-            <TableColumn prefWidth="96.0" resizable="false" text="GOLS DO ADV." />
+          <TableColumn fx:id="colid" prefWidth="55.0" resizable="false" text="ID" />
+          <TableColumn fx:id="colnome" prefWidth="168.66668701171875" resizable="false" text="NOME ADV." />
+            <TableColumn fx:id="collocal" prefWidth="66.33331298828125" resizable="false" text="LOCAL" />
+            <TableColumn fx:id="colresultado" prefWidth="79.0" resizable="false" text="RESULTADO" />
+            <TableColumn fx:id="coltime" prefWidth="98.66665649414062" resizable="false" text="GOLS DO TIME" />
+            <TableColumn fx:id="coladc" prefWidth="96.0" resizable="false" text="GOLS DO ADV." />
         </columns>
       </TableView>
       <Label layoutX="821.0" layoutY="24.0" text="CONTROLE DE GOLS">
@@ -87,12 +91,12 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalvar11" mnemonicParsing="false" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #ffa000;" text="Editar" textFill="WHITE">
+            <Button fx:id="btnSalvar11" mnemonicParsing="false" onAction="#btnEdit" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #ffa000;" text="Editar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="btnSalvar12" mnemonicParsing="false" onAction="#btnLoad" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #228B22;" text="Salvar" textFill="WHITE">
+            <Button fx:id="btnSalvar12" mnemonicParsing="false" onAction="#btnSave" prefHeight="36.0" prefWidth="100.0" style="-fx-background-color: #228B22;" text="Salvar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

@@ -1,5 +1,7 @@
 package model.DAO;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.JogadorModel;
 import model.MYSQL.connection.ConnectionFactory;
 import model.PartidaModel;
@@ -20,13 +22,14 @@ public class PartidaDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = connection.prepareStatement("INSER INTO partida (adversario, resultado, local, golsTime, golsAdv)" +
+            stmt = connection.prepareStatement("INSERT INTO partida (adversario, resultado, local, golsPro, golsContra)" +
                     " VALUES (?, ?, ?, ?, ?)") ;
 
             stmt.setString(1, p.getAdversario());
             stmt.setString(2, p.getResultado());
             stmt.setString(3, p.getLocal());
             stmt.setString(4, p.getGolsTime());
+            stmt.setString(5, p.getGolsAdv());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -38,11 +41,11 @@ public class PartidaDAO {
     }
 
 
-    public List<PartidaModel> read() {
+    public ObservableList<PartidaModel> read() {
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<PartidaModel> pm = new ArrayList<>();
+        ObservableList<PartidaModel> pm = FXCollections.observableArrayList();
 
         try {
             stmt = connection.prepareStatement("SELECT * FROM partida");
