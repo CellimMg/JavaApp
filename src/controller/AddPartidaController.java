@@ -6,24 +6,30 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.DAO.GolJogadorDAO;
 import model.DAO.JogadorDAO;
 import model.DAO.PartidaDAO;
+import model.GolJogadorModel;
+import model.JogadorModel;
 import model.PartidaModel;
 
 public class AddPartidaController {
 
-
-
     @FXML
     protected void initialize(){
 
-        resetTable();
+        resetTables();
         PartidaDAO partidaDAO = new PartidaDAO();
         partidasList = partidaDAO.read();
         JogadorDAO jogadorDAO = new JogadorDAO();
+        jogadores = jogadorDAO.read();
+
+
+        //FALTA PESQUISAR POR ID DO JOGADOR PARA LISTAR E LISTAR BASEADO NO ID DA PARTIDA
+
 
         for(int x = 0; x < jogadorDAO.read().toArray().length; x++){
-            nomes.add(jogadorDAO.read().get(x).getNome());
+            nomes.add(jogadores.get(x).getNome());
             System.out.println(nomes);
         }
 
@@ -38,11 +44,10 @@ public class AddPartidaController {
         cbAutorGol.setItems(nomes);
     }
 
-    public void resetTable(){
+    public void resetTables(){
         PartidaDAO partidaDAO = new PartidaDAO();
         partidasList = partidaDAO.read();
 
-        System.out.println(partidasList);
 
         colid.setCellValueFactory(new PropertyValueFactory<>("_id"));
         colnome.setCellValueFactory(new PropertyValueFactory<>("adversario"));
@@ -51,8 +56,20 @@ public class AddPartidaController {
         coltime.setCellValueFactory(new PropertyValueFactory<>("golsTime"));
         coladc.setCellValueFactory(new PropertyValueFactory<>("golsAdv"));
 
-
         tablePartida.setItems(partidasList);
+    }
+
+    @FXML
+    protected void setTableGols(ActionEvent e){
+        colidgol.setCellValueFactory(new PropertyValueFactory<>("_id"));
+        colautor.setCellValueFactory(new PropertyValueFactory<>("nome"));
+
+       GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
+       golJogadorDAO.create(
+               jogadores.get(cbAutorGol.getSelectionModel().getSelectedIndex())
+               ,partidasList.get(tablePartida.getSelectionModel().getSelectedIndex()));
+
+
     }
 
 
@@ -72,7 +89,7 @@ public class AddPartidaController {
         if (partidaModel.get_id() != null) partidaDAO.update(partidaModel, partidaModel.get_id());
         else partidaDAO.create(partidaModel);
 
-        resetTable();
+        resetTables();
     }
 
 
@@ -98,6 +115,9 @@ public class AddPartidaController {
 
 
     @FXML
+    private TableView<JogadorModel> tableGols;
+
+    @FXML
     private TableColumn<PartidaModel, String> colid;
 
     @FXML
@@ -117,6 +137,12 @@ public class AddPartidaController {
 
     @FXML
     private TextField ifId;
+
+    @FXML
+    private TableColumn<JogadorModel, String> colidgol;
+
+    @FXML
+    private TableColumn<JogadorModel, String> colautor;
 
     @FXML
     private TextField tfNome;
@@ -139,10 +165,8 @@ public class AddPartidaController {
     @FXML
     private ComboBox<String> cbResultado;
 
-    @FXML
-    private TableView<PartidaModel> tableGols;
-
     ObservableList<String> nomes = FXCollections.observableArrayList();
     ObservableList<PartidaModel> partidasList = FXCollections.observableArrayList();
+    ObservableList<JogadorModel> jogadores = FXCollections.observableArrayList();
 
 }

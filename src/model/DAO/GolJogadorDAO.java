@@ -1,5 +1,7 @@
 package model.DAO;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.JogadorModel;
 import model.MYSQL.connection.ConnectionFactory;
 import model.GolJogadorModel;
@@ -35,15 +37,16 @@ public class GolJogadorDAO {
         }
     }
 
-    public List<GolJogadorModel> read(){
+    public ObservableList<GolJogadorModel> read(int id){
 
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<GolJogadorModel> gm = new ArrayList<>();
+        ObservableList<GolJogadorModel> gm = FXCollections.observableArrayList();
 
         try {
-            stmt = connection.prepareStatement("SELECT * FROM goljogador");
+            stmt = connection.prepareStatement("SELECT * FROM goljogador WHERE idPartida = ?");
+            stmt.setInt(1, id);
             rs = stmt.executeQuery();
 
             while (rs.next()){
