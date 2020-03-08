@@ -1,5 +1,6 @@
 package model.DAO;
 
+import controller.Exceptions.NotNumberException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.JogadorModel;
@@ -11,12 +12,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class GolJogadorDAO {
 
-    public void create(JogadorModel j, PartidaModel p){
+    public void create(JogadorModel j, PartidaModel p, String qtd){
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
@@ -26,7 +25,7 @@ public class GolJogadorDAO {
 
             stmt.setInt(1, j.get_id());
             stmt.setInt(2, p.get_id());
-            stmt.setString(3, "1");
+            stmt.setString(3, qtd);
 
 
             stmt.executeUpdate();
@@ -59,7 +58,7 @@ public class GolJogadorDAO {
                 gm.add(gj);
             }
 
-        } catch (SQLException e) {
+        } catch (SQLException | NotNumberException e) {
             e.printStackTrace();
         } finally {
             ConnectionFactory.closeConnection(connection, stmt);

@@ -1,5 +1,6 @@
 package model.DAO;
 
+import controller.Exceptions.NullException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.JogadorModel;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class PartidaDAO {
 
-    public void create(PartidaModel p) {
+    public void create(PartidaModel p) throws SQLException {
 
         Connection connection = ConnectionFactory.getConnection();
 
@@ -35,6 +36,8 @@ public class PartidaDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
+           
+
             ConnectionFactory.closeConnection(connection, stmt);
         }
 
@@ -64,7 +67,7 @@ public class PartidaDAO {
 
                 pm.add(p);
             }
-        } catch (SQLException e) {
+        } catch (SQLException | NullException e) {
             e.printStackTrace();
         }
         return pm;

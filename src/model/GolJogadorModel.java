@@ -1,5 +1,7 @@
 package model;
 
+import controller.Exceptions.NotNumberException;
+
 public class GolJogadorModel {
 
     private int _id;
@@ -55,7 +57,8 @@ public class GolJogadorModel {
         return qtd;
     }
 
-    public void setQtd(String qtd) {
-        this.qtd = qtd;
+    public void setQtd(String qtd) throws NotNumberException {
+        if(qtd.matches("[0-9]+")) this.qtd = qtd;
+        else throw new NotNumberException("Não tem só numeros");
     }
 }

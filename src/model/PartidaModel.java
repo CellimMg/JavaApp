@@ -1,5 +1,7 @@
 package model;
 
+import controller.Exceptions.NullException;
+
 public class PartidaModel {
 
     private Integer _id;
@@ -43,8 +45,9 @@ public class PartidaModel {
         return _id;
     }
 
-    public void set_id(Integer _id) {
-        this._id = _id;
+    public void set_id(Integer _id) throws NullException {
+        if (_id == null) throw new NullException("nulo");
+        else this._id = _id;
     }
 
     public String getAdversario() {
