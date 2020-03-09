@@ -3,6 +3,7 @@ package controller;
 import controller.Exceptions.NotNumberException;
 import controller.Exceptions.NotStringException;
 import controller.Exceptions.NullException;
+import controller.Exceptions.ResultadoException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -50,6 +51,58 @@ public class AddPartidaController {
 
         cbAutorGol.setOnAction(e -> {
             tfidGol.setText(jogadores.get(cbAutorGol.getSelectionModel().getSelectedIndex()).get_id().toString());
+        });
+
+        cbResultado.setOnAction(e -> {
+            if(cbResultado.getSelectionModel().getSelectedItem() != null){
+                if(tfGolsC.getText().isEmpty() || tfGolsP.getText().isEmpty()){
+                    try {
+                        throw new NullException("s");
+                    } catch (NullException ex) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Erro!");
+                        alert.setHeaderText("Ops!");
+                        alert.setContentText("Preencha o placar antes de selecionar o resultado!");
+
+                        alert.showAndWait();
+                    }finally {
+                        cbResultado.setValue(null);
+                    }
+                }else if((Integer.parseInt(tfGolsP.getText()) > Integer.parseInt(tfGolsC.getText())) && !cbResultado.getSelectionModel().getSelectedItem().equals("V")){
+                    try {
+                        throw new ResultadoException("s");
+                    } catch (ResultadoException ex) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Erro!");
+                        alert.setHeaderText("Ops!");
+                        alert.setContentText("O resultado não condiz com o placar!");
+
+                        alert.showAndWait();
+                    }
+                }else if((Integer.parseInt(tfGolsC.getText()) > Integer.parseInt(tfGolsP.getText())) && !cbResultado.getSelectionModel().getSelectedItem().equals("V")){
+                    try {
+                        throw new ResultadoException("S");
+                    } catch (ResultadoException ex) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Erro!");
+                        alert.setHeaderText("Ops!");
+                        alert.setContentText("O resultado não condiz com o placar!");
+
+                        alert.showAndWait();
+                    }
+                }else if(tfGolsP.getText().equals(tfGolsC.getText()) && !cbResultado.getSelectionModel().getSelectedItem().equals("E")){
+                    try {
+                        throw new ResultadoException("s");
+                    } catch (ResultadoException ex) {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                        alert.setTitle("Erro!");
+                        alert.setHeaderText("Ops!");
+                        alert.setContentText("O resultado não condiz com o placar!");
+
+                        alert.showAndWait();
+                    }
+                }
+            }
         });
 
         cbAutorGol.setItems(nomes);
@@ -116,15 +169,27 @@ public class AddPartidaController {
 
         PartidaModel p = new PartidaModel();
         GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
+        GolJogadorModel gj = new GolJogadorModel();
+
 
         try {
-            p.set_id(Integer.parseInt(ifId.getText()));
-            golJogadorDAO.create(jogadores.get(cbAutorGol.getSelectionModel().getSelectedIndex()), p, tfqtd.getText());
-        } catch (Exception e) {
+            gj.setIdPartida(p.get_id());
+            gj.setQtd(tfqtd.getText());
+            gj.setIdJogador(jogadores.get(cbAutorGol.getSelectionModel().getSelectedIndex()).get_id());
+
+            golJogadorDAO.create(gj);
+        } catch (NullException e) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
             alert.setHeaderText("Ops!");
-            alert.setContentText("Algo de errado ocorreu!\n Selecione uma partida para editar antes de adicionar gols!");
+            alert.setContentText("Algo de errado ocorreu!\n Lembre-se de selecionar uma partida para editar e de escolher o autor do gol!");
+
+            alert.showAndWait();
+        } catch (NotNumberException e) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText("Ops!");
+            alert.setContentText("Algo de errado ocorreu!\n A quantidade de gols deve ser apenas números!");
 
             alert.showAndWait();
         }
@@ -150,6 +215,8 @@ public class AddPartidaController {
         if (partidaModel.get_id() != null) partidaDAO.update(partidaModel, partidaModel.get_id());
         else partidaDAO.create(partidaModel);
 
+
+        loadTablePartida();
         resetTablePartida();
     }
 

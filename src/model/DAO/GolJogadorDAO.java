@@ -1,6 +1,7 @@
 package model.DAO;
 
 import controller.Exceptions.NotNumberException;
+import controller.Exceptions.NullException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.JogadorModel;
@@ -15,7 +16,7 @@ import java.sql.SQLException;
 
 public class GolJogadorDAO {
 
-    public void create(JogadorModel j, PartidaModel p, String qtd){
+    public void create(GolJogadorModel gj){
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
@@ -23,9 +24,9 @@ public class GolJogadorDAO {
         try {
             stmt = connection.prepareStatement("INSERT INTO goljogador (idJogador, idPartida, qtd) VALUES (?, ?, ?)");
 
-            stmt.setInt(1, j.get_id());
-            stmt.setInt(2, p.get_id());
-            stmt.setString(3, qtd);
+            stmt.setInt(1, gj.getIdJogador());
+            stmt.setInt(2, gj.getIdPartida());
+            stmt.setString(3, gj.getQtd());
 
 
             stmt.executeUpdate();
@@ -58,7 +59,7 @@ public class GolJogadorDAO {
                 gm.add(gj);
             }
 
-        } catch (SQLException | NotNumberException e) {
+        } catch (SQLException | NotNumberException | NullException e) {
             e.printStackTrace();
         } finally {
             ConnectionFactory.closeConnection(connection, stmt);

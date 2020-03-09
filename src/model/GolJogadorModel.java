@@ -1,6 +1,7 @@
 package model;
 
 import controller.Exceptions.NotNumberException;
+import controller.Exceptions.NullException;
 
 public class GolJogadorModel {
 
@@ -49,8 +50,10 @@ public class GolJogadorModel {
         return idPartida;
     }
 
-    public void setIdPartida(int idPartida) {
-        this.idPartida = idPartida;
+    public void setIdPartida(Integer idPartida) throws NullException {
+
+        if(idPartida == null) throw new NullException("erro");
+        else this.idPartida = idPartida;
     }
 
     public String getQtd() {

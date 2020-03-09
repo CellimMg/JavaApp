@@ -1,6 +1,7 @@
 package model.DAO;
 
 import controller.Exceptions.NotNumberException;
+import controller.Exceptions.NullException;
 import model.EscalacaoModel;
 import model.GolJogadorModel;
 import model.MYSQL.connection.ConnectionFactory;
@@ -56,7 +57,7 @@ public class EscalacaoDAO {
 
             }
 
-        } catch (SQLException | NotNumberException e) {
+        } catch (SQLException | NotNumberException | NullException e) {
             e.printStackTrace();
         } finally {
             ConnectionFactory.closeConnection(connection, stmt);
