@@ -12,23 +12,6 @@ public class PartidaModel {
 
     }
 
-    public PartidaModel(Integer _id, String adversario, String resultado, String local, String golsTime, String golsAdv) {
-        this._id = _id;
-        this.adversario = adversario;
-        this.resultado = resultado;
-        this.local = local;
-        this.golsTime = golsTime;
-        this.golsAdv = golsAdv;
-    }
-
-    public PartidaModel(String adversario, String resultado, String local, String golsTime, String golsAdv) {
-        this.adversario = adversario;
-        this.resultado = resultado;
-        this.local = local;
-        this.golsTime = golsTime;
-        this.golsAdv = golsAdv;
-    }
-
     @Override
     public String toString() {
         return "Partida" +

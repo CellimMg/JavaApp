@@ -2,7 +2,7 @@ package model;
 
 public class EscalacaoModel {
 
-    private int _id;
+    private Integer _id;
     private int idPartida;
 
     public EscalacaoModel(int id, int idPartida) {

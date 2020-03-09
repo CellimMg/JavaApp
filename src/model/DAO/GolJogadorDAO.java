@@ -68,16 +68,42 @@ public class GolJogadorDAO {
         return gm;
     }
 
+
+    public Integer soma(int id){
+        Connection connection = ConnectionFactory.getConnection();
+        Integer value = null;
+
+        PreparedStatement stmt = null;
+
+
+        try {
+            stmt = connection.prepareStatement("SELECT SUM(qtd) FROM goljogador WHERE idPartida = ?");
+            stmt.setInt(1, id);
+
+            ResultSet rs = stmt.executeQuery();
+
+            rs.next();
+
+            value = rs.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return value;
+    }
+
     public void update(GolJogadorModel gm, int id){
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
 
         try {
-            stmt = connection.prepareStatement("UPDATE goljogador SET idJogador = ? WHERE id = ?");
+            stmt = connection.prepareStatement("UPDATE goljogador SET idJogador = ?, qtd = ? WHERE id = ?");
 
             stmt.setInt(1, gm.getIdJogador());
-            stmt.setInt(2, id);
+            stmt.setInt(2, Integer.parseInt(gm.getQtd()));
+            stmt.setInt(3, id);
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -91,10 +117,25 @@ public class GolJogadorDAO {
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
+        try {
+            stmt = connection.prepareStatement("DELETE FROM goljogador WHERE id = ?");
+            stmt.setInt(1, id);
+
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionFactory.closeConnection(connection, stmt);
+        }
+    }
+    public void deleteFromPartida(int id){
+        Connection connection = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
 
 
         try {
-            stmt = connection.prepareStatement("DELETE goljogador WHERE id = ?");
+            stmt = connection.prepareStatement("DELETE goljogador WHERE idPartida = ?");
 
             stmt.setInt(1, id);
         } catch (SQLException e) {

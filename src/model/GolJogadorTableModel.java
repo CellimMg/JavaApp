@@ -1,9 +1,17 @@
 package model;
 
-import controller.Exceptions.NotNumberException;
-import controller.Exceptions.NullException;
 
 public class GolJogadorTableModel {
+
+    private Integer idPartida;
+
+    public Integer getIdPartida() {
+        return idPartida;
+    }
+
+    public void setIdPartida(Integer idPartida) {
+        this.idPartida = idPartida;
+    }
 
     private Integer id;
     private String nome;

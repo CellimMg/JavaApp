@@ -5,7 +5,7 @@ import controller.Exceptions.NullException;
 
 public class GolJogadorModel {
 
-    private int _id;
+    private Integer _id;
     private int idJogador;
     private int idPartida;
     private String qtd;
@@ -30,7 +30,7 @@ public class GolJogadorModel {
                 '}';
     }
 
-    public int get_id() {
+    public Integer get_id() {
         return _id;
     }
 

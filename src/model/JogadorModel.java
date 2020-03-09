@@ -25,37 +25,9 @@ public class JogadorModel {
                 '}';
     }
 
-    public JogadorModel(Integer _id, String nome, String idade, String cidade, String estado, String pais,
-                        String nomeMae, String posicao, String pernaChute, String altura) {
-        this._id = _id;
-        this.nome = nome;
-        this.idade = idade;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.pais = pais;
-        this.nomeMae = nomeMae;
-        this.posicao = posicao;
-        this.pernaChute = pernaChute;
-        this.altura = altura;
-    }
-
     public JogadorModel(){
 
     }
-
-    public JogadorModel(String nome, String idade, String cidade, String estado, String pais, String nomeMae,
-                        String posicao, String pernaChute, String altura) {
-        this.nome = nome;
-        this.idade = idade;
-        this.cidade = cidade;
-        this.estado = estado;
-        this.pais = pais;
-        this.nomeMae = nomeMae;
-        this.posicao = posicao;
-        this.pernaChute = pernaChute;
-        this.altura = altura;
-    }
-
 
 
     public Integer get_id() {
