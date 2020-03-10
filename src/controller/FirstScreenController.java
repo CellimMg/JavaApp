@@ -10,8 +10,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.DAO.PartidaDAO;
+import model.PartidaModel;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -19,25 +22,49 @@ import java.io.IOException;
 
 public class FirstScreenController {
 
-
-
     @FXML
     protected void initialize(){
+        resetTable();
 
 
     }
 
 
+    public void resetTable(){
 
+        PartidaDAO partidaDAO = new PartidaDAO();
+        PartidaModel partidaModel = partidaDAO.getLast();
+
+
+        System.out.println(partidaModel);
+
+
+        if(Integer.parseInt(partidaModel.getGolsTime()) > Integer.parseInt(partidaModel.getGolsAdv())){
+            lblRESULTADO.setTextFill(Color.web("#27AE60", 1));
+            lblRESULTADO.setText("VITÓRIA!");
+            lblRESULTADO.set
+        }else if(Integer.parseInt(partidaModel.getGolsAdv()) > Integer.parseInt(partidaModel.getGolsTime())){
+            lblRESULTADO.setText("DERROTA!");
+        }else if(Integer.parseInt(partidaModel.getGolsTime()) == Integer.parseInt(partidaModel.getGolsAdv())){
+            lblRESULTADO.setText("EMPATE!");
+        }
+
+        lblPlacar1.setText(partidaModel.getGolsTime());
+        lblTime2.setText(partidaModel.getAdversario());
+        lblPlacar2.setText(partidaModel.getGolsAdv());
+    }
 
     @FXML
-    private Label lblTime2;
+    private  Label lblTime2;
 
     @FXML
-    private Label lblPlacar1;
+    private  Label lblPlacar1;
 
     @FXML
-    private Label lblPlacar2;
+    private  Label lblPlacar2;
+
+    @FXML
+    private Label lblRESULTADO;
 
     @FXML
     private ImageView imgHeader = new ImageView();

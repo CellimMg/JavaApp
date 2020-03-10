@@ -352,12 +352,14 @@ public class AddPartidaController {
 
     @FXML
     protected void btnDelete2(ActionEvent e) throws NotStringException, SQLException {
-
-
+        System.out.println(gols);
+        System.out.println(tablePartida.getSelectionModel().getSelectedIndex());
         System.out.println("salve");
 
         GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
         GolJogadorModel golJogadorModel = gols.get(tablePartida.getSelectionModel().getSelectedIndex());
+
+
 
         golJogadorDAO.delete(golJogadorModel.get_id());
 

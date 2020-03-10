@@ -85,7 +85,7 @@
                      <children>
                         <Label fx:id="lblTime" text="LA Galaxy" textFill="WHITE">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="imgGame" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
@@ -94,7 +94,7 @@
                               <Insets top="25.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="25.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
                         </Label>
                      </children>
@@ -128,6 +128,11 @@
                   </VBox>
                </children>
             </HBox>
+            <Label fx:id="lblRESULTADO" layoutX="324.0" layoutY="582.0" text="Label">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>

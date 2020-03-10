@@ -73,6 +73,40 @@ public class PartidaDAO {
         return pm;
     }
 
+    public PartidaModel getLast(){
+        Connection connection = ConnectionFactory.getConnection();
+
+        PreparedStatement stmt = null;
+
+        PartidaModel partidaModel = new PartidaModel();
+
+        try {
+            stmt = connection.prepareStatement("SELECT * \n" +
+                    "FROM partida\n" +
+                    "ORDER BY id DESC\n" +
+                    "LIMIT 1");
+
+
+            ResultSet rs = stmt.executeQuery();
+
+            rs.next();
+
+            partidaModel.set_id(rs.getInt("id"));
+            partidaModel.setAdversario(rs.getString("adversario"));
+            partidaModel.setGolsTime(rs.getString("golsPro"));
+            partidaModel.setGolsAdv(rs.getString("golsContra"));
+            partidaModel.setLocal(rs.getString("local"));
+            partidaModel.setResultado(rs.getString("resultado"));
+
+        } catch (SQLException | NullException e) {
+            e.printStackTrace();
+        }
+
+        return partidaModel;
+    }
+
+
+
     public void update(PartidaModel p, int id) {
         Connection connection = ConnectionFactory.getConnection();
 

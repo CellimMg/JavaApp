@@ -69,12 +69,12 @@
       </VBox>
    </left>
    <center>
-      <Pane prefHeight="700.0" prefWidth="713.0" style="-fx-background-color: #808080;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="700.0" prefWidth="713.0" BorderPane.alignment="CENTER">
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </padding>
          <children>
-            <Label fx:id="lblLastGame" layoutX="252.0" layoutY="106.0" prefHeight="62.0" prefWidth="204.0" text="Última Partida" textFill="WHITE">
+            <Label fx:id="lblLastGame" layoutX="252.0" layoutY="106.0" prefHeight="62.0" prefWidth="204.0" text="Última Partida">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
@@ -83,18 +83,18 @@
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="253.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblTime" text="LA Galaxy" textFill="WHITE">
+                        <Label fx:id="lblTime" text="LA Galaxy" textFill="#111111">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="imgGame" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="lblPlacar1" text="3" textFill="WHITE">
+                        <Label fx:id="lblPlacar1" text="3" textFill="#070707">
                            <VBox.margin>
                               <Insets top="25.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="25.0" />
+                              <Font name="System Bold" size="25.0" />
                            </font>
                         </Label>
                      </children>
@@ -110,13 +110,13 @@
                   </VBox>
                   <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="lblTime2" text="Kombi Sem Freio" textFill="WHITE">
+                        <Label fx:id="lblTime2" text="Kombi Sem Freio">
                            <font>
-                              <Font size="18.0" />
+                              <Font name="System Bold" size="18.0" />
                            </font>
                         </Label>
                         <ImageView fx:id="imgGame2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label fx:id="lblPlacar2" text="1" textFill="WHITE">
+                        <Label fx:id="lblPlacar2" text="1">
                            <VBox.margin>
                               <Insets top="25.0" />
                            </VBox.margin>
@@ -128,6 +128,11 @@
                   </VBox>
                </children>
             </HBox>
+            <Label fx:id="lblRESULTADO" layoutX="316.0" layoutY="583.0" text="Label">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </center>
