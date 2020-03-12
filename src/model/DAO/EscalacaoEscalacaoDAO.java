@@ -25,11 +25,11 @@ public class EscalacaoEscalacaoDAO {
 
 
         try {
-            stmt = connection.prepareStatement("INSERT INTO escalacao_escalacao (idPartida, idEscalacao, idJogador) VALUES (?, ?, ?)");
+            stmt = connection.prepareStatement("INSERT INTO `escalacao_escalacao` (`idJogador`, `idEscalacao`, `idPartida`) VALUES (?, ?, ?);");
 
-            stmt.setInt(1, idPartida);
+            stmt.setInt(1, idJogador);
             stmt.setInt(2, idEscalacao);
-            stmt.setInt(3, idJogador);
+            stmt.setInt(3, idPartida);
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -72,18 +72,18 @@ public class EscalacaoEscalacaoDAO {
     }
 
 
-    public void delete(int idJogador, int idPartida) {
+    public void delete(int idJogador, int idPartida, int idEscalacao) {
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
 
         try {
-            stmt = connection.prepareStatement("DELETE FROM jogador WHERE idJogador = ? and idPartida = ?");
+            stmt = connection.prepareStatement("DELETE FROM escalacao_escalacao WHERE idJogador = ? and idPartida = ? and idEscalacao = ?");
 
 
             stmt.setInt(1, idJogador);
             stmt.setInt(2, idPartida);
-
+            stmt.setInt(3, idEscalacao);
 
             stmt.executeUpdate();
 

@@ -27,7 +27,7 @@ public class EscalacaoController {
     protected void initialize() throws NotStringException, SQLException, NullException {
 
         EscalacaoDAO escalacaoDAO = new EscalacaoDAO();
-        if(escalacaoDAO.readEscalacaoId(AddPartidaController.idPartida) == null){
+        if (escalacaoDAO.readEscalacaoId(AddPartidaController.idPartida) == null) {
             escalacaoDAO.create(AddPartidaController.idPartida);
         }
 
@@ -53,11 +53,9 @@ public class EscalacaoController {
         EscalacaoEscalacaoModel escalacaoEscalacaoModel = new EscalacaoEscalacaoModel();
 
         escalacaoEscalacaoModels = escalacaoEscalacaoDAO.read(AddPartidaController.idPartida);
-
-        for (EscalacaoEscalacaoModel em: escalacaoEscalacaoModels) {
+        for (EscalacaoEscalacaoModel em : escalacaoEscalacaoModels) {
             jogadoresTabela.add(jogadorDAO.read(em.getIdJogador()));
         }
-
         colPos.setCellValueFactory(new PropertyValueFactory<>("posicao"));
         colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
@@ -66,38 +64,40 @@ public class EscalacaoController {
     }
 
     @FXML
-    public void setPlayer(ActionEvent e){
+    public void setPlayer(ActionEvent e) {
+        int id = cbJogadores.getSelectionModel().getSelectedIndex();
 
         EscalacaoDAO escalacaoDAO = new EscalacaoDAO();
         EscalacaoEscalacaoDAO escalacaoEscalacaoDAO = new EscalacaoEscalacaoDAO();
-
-        System.out.println(jogadores.get(cbJogadores.getSelectionModel().getSelectedIndex()));
-        System.out.println(nomeJogador);
-        System.out.println(cbJogadores.getSelectionModel().getSelectedIndex());
-
 
         jogadoresTabela.add(jogadores.get(cbJogadores.getSelectionModel().getSelectedIndex()));
         nomeJogador.remove(cbJogadores.getSelectionModel().getSelectedIndex());
 
 
-        System.out.println(jogadores.get(0).get_id());
+        //escalacaoEscalacaoDAO.create(AddPartidaController.idPartida, escalacaoDAO.readEscalacaoId(AddPartidaController.idPartida)
+        //        , jogadores.get(id).get_id());
 
 
-
-        escalacaoEscalacaoDAO.create(jogadores.get(1).get_id(),
-                AddPartidaController.idPartida, escalacaoDAO.readEscalacaoId(AddPartidaController.idPartida));
-
-
-
-        cbJogadores.getSelectionModel().getSelectedItem();
     }
 
     @FXML
-    public void removePlayer(ActionEvent e){
+    public void removePlayer(ActionEvent e) {
+        int id = tableEscalacao.getSelectionModel().getSelectedItem().get_id();
 
+        EscalacaoDAO escalacaoDAO = new EscalacaoDAO();
+        EscalacaoEscalacaoDAO escalacaoEscalacaoDAO = new EscalacaoEscalacaoDAO();
+
+        jogadoresTabela.remove(tableEscalacao.getSelectionModel().getSelectedItem());
+        nomeJogador.remove(cbJogadores.getSelectionModel().getSelectedIndex());
+
+
+        //escalacaoEscalacaoDAO.delete(id, AddPartidaController.idPartida, escalacaoDAO.readEscalacaoId(AddPartidaController.idPartida));
+
+        nomeJogador.add(tableEscalacao.getSelectionModel().getSelectedItem().getNome());
+        cbJogadores.setItems(nomeJogador);
     }
 
-    public void function(PartidaModel p){
+    public void function(PartidaModel p) {
         this.p = p.get_id();
     }
 
