@@ -1,26 +1,43 @@
 package model.DAO;
 
+import controller.Exceptions.NotNumberException;
 import controller.Exceptions.NullException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.JogadorModel;
 import model.MYSQL.connection.ConnectionFactory;
 import model.PartidaModel;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class PartidaDAO {
 
-    public void create(PartidaModel p) throws SQLException {
+    public void create(PartidaModel p) throws SQLException, NullException {
 
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
+
+        switch (p.getLocal()){
+            case "Fora":
+                p.setLocal("F");
+                break;
+            case "Casa":
+                p.setLocal("C");
+        }
+
+        switch (p.getResultado()){
+            case "Vitória":
+                p.setResultado("V");
+                break;
+            case "Derrota":
+                p.setResultado("D");
+                break;
+            case "Empate":
+                p.setResultado("E");
+        }
 
         try {
             stmt = connection.prepareStatement("INSERT INTO partida (adversario, resultado, local, golsPro, golsContra)" +
@@ -67,7 +84,7 @@ public class PartidaDAO {
 
                 pm.add(p);
             }
-        } catch (SQLException | NullException e) {
+        } catch (SQLException | NullException | NotNumberException e) {
             e.printStackTrace();
         }
         return pm;
@@ -98,7 +115,7 @@ public class PartidaDAO {
             partidaModel.setLocal(rs.getString("local"));
             partidaModel.setResultado(rs.getString("resultado"));
 
-        } catch (SQLException | NullException e) {
+        } catch (SQLException | NullException | NotNumberException e) {
             e.printStackTrace();
         }
 
@@ -107,10 +124,29 @@ public class PartidaDAO {
 
 
 
-    public void update(PartidaModel p, int id) {
+    public void update(PartidaModel p, int id) throws NullException {
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
+
+        switch (p.getLocal()){
+            case "Fora":
+                p.setLocal("F");
+                break;
+            case "Casa":
+                p.setLocal("C");
+        }
+
+        switch (p.getResultado()){
+            case "Vitória":
+                p.setResultado("V");
+                break;
+            case "Derrota":
+                p.setResultado("D");
+                break;
+            case "Empate":
+                p.setResultado("E");
+        }
 
 
         try {

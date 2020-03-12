@@ -8,8 +8,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.DAO.GolJogadorDAO;
 import model.DAO.JogadorDAO;
 import model.DAO.PartidaDAO;
@@ -18,12 +23,13 @@ import model.GolJogadorTableModel;
 import model.JogadorModel;
 import model.PartidaModel;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class AddPartidaController {
 
     @FXML
-    protected void initialize() {
+    protected void initialize() throws NullException {
 
         loadTablePartida();
         PartidaDAO partidaDAO = new PartidaDAO();
@@ -32,19 +38,16 @@ public class AddPartidaController {
         jogadores = jogadorDAO.read();
 
 
-        //FALTA PESQUISAR POR ID DO JOGADOR PARA LISTAR E LISTAR BASEADO NO ID DA PARTIDA
-
-
         for (int x = 0; x < jogadorDAO.read().toArray().length; x++) {
             nomes.add(jogadores.get(x).getNome());
         }
 
         cbLocal.getItems().addAll(
-                "C", "F"
+                "Casa", "Fora"
         );
 
         cbResultado.getItems().addAll(
-                "V", "E", "D"
+                "Vitória", "Empate", "Derrota"
         );
 
         cbAutorGol.setOnAction(e -> {
@@ -66,7 +69,7 @@ public class AddPartidaController {
 
                         alert.showAndWait();
                     }
-                } else if ((Integer.parseInt(tfGolsP.getText()) > Integer.parseInt(tfGolsC.getText())) && !cbResultado.getSelectionModel().getSelectedItem().equals("V")) {
+                } else if ((Integer.parseInt(tfGolsP.getText()) > Integer.parseInt(tfGolsC.getText())) && !cbResultado.getSelectionModel().getSelectedItem().equals("Vitória")) {
                     try {
                         throw new ResultadoException("s");
                     } catch (ResultadoException ex) {
@@ -77,7 +80,7 @@ public class AddPartidaController {
                         cbResultado.setValue(null);
                         alert.showAndWait();
                     }
-                } else if ((Integer.parseInt(tfGolsC.getText()) > Integer.parseInt(tfGolsP.getText())) && !cbResultado.getSelectionModel().getSelectedItem().equals("V")) {
+                } else if ((Integer.parseInt(tfGolsC.getText()) > Integer.parseInt(tfGolsP.getText())) && !cbResultado.getSelectionModel().getSelectedItem().equals("Derrota")) {
                     try {
                         throw new ResultadoException("S");
                     } catch (ResultadoException ex) {
@@ -88,7 +91,7 @@ public class AddPartidaController {
                         cbResultado.setValue(null);
                         alert.showAndWait();
                     }
-                } else if (tfGolsP.getText().equals(tfGolsC.getText()) && !cbResultado.getSelectionModel().getSelectedItem().equals("E")) {
+                } else if (tfGolsP.getText().equals(tfGolsC.getText()) && !cbResultado.getSelectionModel().getSelectedItem().equals("Empate")) {
                     try {
                         throw new ResultadoException("s");
                     } catch (ResultadoException ex) {
@@ -115,13 +118,33 @@ public class AddPartidaController {
         cbLocal.setValue(null);
     }
 
-
-    public void loadTablePartida() {
+    public void loadTablePartida() throws NullException {
 
         //Carregamento da tabela de partidas
         PartidaDAO partidaDAO = new PartidaDAO();
         partidasList = partidaDAO.read();
 
+
+        for (PartidaModel p: partidasList) {
+            switch (p.getLocal()){
+                case "F":
+                    p.setLocal("Fora");
+                    break;
+                case "C":
+                    p.setLocal("Casa");
+            }
+
+            switch (p.getResultado()){
+                case "V":
+                    p.setResultado("Vitória");
+                    break;
+                case "D":
+                    p.setResultado("Derrota");
+                    break;
+                case "E":
+                    p.setResultado("Empate");
+            }
+        }
 
         colid.setCellValueFactory(new PropertyValueFactory<>("_id"));
         colnome.setCellValueFactory(new PropertyValueFactory<>("adversario"));
@@ -163,7 +186,6 @@ public class AddPartidaController {
         cbAutorGol.setValue(null);
         tfqtd.clear();
     }
-
 
     @FXML
     public void saveGol() throws NotStringException, SQLException {
@@ -218,7 +240,6 @@ public class AddPartidaController {
 
                     alert.showAndWait();
                 }
-
             }
         }else{
             if(ifId.getText().isEmpty() || tfqtd.getText().isEmpty() || tfGolsP.getText().isEmpty()){
@@ -272,10 +293,39 @@ public class AddPartidaController {
 
             }
         }
+    }
 
+
+    public void btnEscalacao(ActionEvent e) throws IOException {
+        try {
+            PartidaModel p = new PartidaModel();
+            p.set_id(Integer.parseInt(ifId.getText()));
+            idPartida = p.get_id();
+
+
+            Stage stage = new Stage();
+            Scene addPartidaScene;
+
+            Parent addPartidaSceneFXML = FXMLLoader.load(getClass().getResource("../view/escalacao.fxml"));
+            addPartidaScene = new Scene(addPartidaSceneFXML);
+
+            stage.setScene(addPartidaScene);
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
+            stage.show();
+        } catch (Exception ex) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText("Ops!");
+            alert.setContentText("Algo de errado ocorreu!\n Você precisa selecionar uma partida para editar!");
+
+            alert.showAndWait();
+        }
 
 
     }
+
+    public static Integer idPartida;
 
 
     @FXML
@@ -283,22 +333,36 @@ public class AddPartidaController {
         PartidaDAO partidaDAO = new PartidaDAO();
         PartidaModel partidaModel = new PartidaModel();
 
-        if (!ifId.getText().isEmpty()) partidaModel.set_id(Integer.parseInt(ifId.getText()));
-        partidaModel.setAdversario(tfNome.getText());
-        partidaModel.setGolsAdv(tfGolsC.getText());
-        partidaModel.setGolsTime(tfGolsP.getText());
-        partidaModel.setLocal(cbLocal.getSelectionModel().getSelectedItem());
-        partidaModel.setResultado(cbResultado.getSelectionModel().getSelectedItem());
 
+        try {
+            if (!ifId.getText().isEmpty()) partidaModel.set_id(Integer.parseInt(ifId.getText()));
+            partidaModel.setAdversario(tfNome.getText());
+            partidaModel.setGolsAdv(tfGolsC.getText());
+            partidaModel.setGolsTime(tfGolsP.getText());
+            partidaModel.setLocal(cbLocal.getSelectionModel().getSelectedItem());
+            partidaModel.setResultado(cbResultado.getSelectionModel().getSelectedItem());
+        } catch (NullException ex) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText("Ops!");
+            alert.setContentText("Algo de errado ocorreu!\n Preencha todos os campos!");
+
+            alert.showAndWait();
+        } catch (NotNumberException ex) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText("Ops!");
+            alert.setContentText("Algo de errado ocorreu!\n Os gols do seu time e do time adversário devem ser informados apenas com números!");
+
+            alert.showAndWait();
+        }
 
         if (partidaModel.get_id() != null) partidaDAO.update(partidaModel, partidaModel.get_id());
         else partidaDAO.create(partidaModel);
 
-
         loadTablePartida();
         resetTablePartida();
     }
-
 
     @FXML
     protected void btnEdit(ActionEvent e) throws NotNumberException, SQLException, NotStringException, NullException {
@@ -334,9 +398,8 @@ public class AddPartidaController {
         tfqtd.setText(gols1.get(tableGols.getSelectionModel().getSelectedIndex()).getQtd());
     }
 
-
     @FXML
-    protected void btnDelete(ActionEvent e) throws NotStringException, SQLException {
+    protected void btnDelete(ActionEvent e) throws NotStringException, SQLException, NullException {
 
         PartidaDAO partidaDAO = new PartidaDAO();
         GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
@@ -366,7 +429,6 @@ public class AddPartidaController {
         loadTableGol();
         resetTableGol();
     }
-
 
     @FXML
     private TableView<GolJogadorTableModel> tableGols;
@@ -427,7 +489,6 @@ public class AddPartidaController {
 
     @FXML
     private ComboBox<String> cbAutorGol;
-
 
     @FXML
     private ComboBox<String> cbResultado;

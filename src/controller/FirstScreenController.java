@@ -26,24 +26,20 @@ public class FirstScreenController {
     protected void initialize(){
         resetTable();
 
-
     }
-
 
     public void resetTable(){
 
         PartidaDAO partidaDAO = new PartidaDAO();
         PartidaModel partidaModel = partidaDAO.getLast();
 
-
         System.out.println(partidaModel);
-
 
         if(Integer.parseInt(partidaModel.getGolsTime()) > Integer.parseInt(partidaModel.getGolsAdv())){
             lblRESULTADO.setTextFill(Color.web("#27AE60", 1));
             lblRESULTADO.setText("VITÓRIA!");
-            lblRESULTADO.set
         }else if(Integer.parseInt(partidaModel.getGolsAdv()) > Integer.parseInt(partidaModel.getGolsTime())){
+            lblRESULTADO.setTextFill(Color.web("#8B0000", 1));
             lblRESULTADO.setText("DERROTA!");
         }else if(Integer.parseInt(partidaModel.getGolsTime()) == Integer.parseInt(partidaModel.getGolsAdv())){
             lblRESULTADO.setText("EMPATE!");

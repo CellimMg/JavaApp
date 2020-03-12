@@ -101,7 +101,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="150.0">
                      <children>
-                        <Label fx:id="lblVs" text="VS" textFill="WHITE">
+                        <Label fx:id="lblVs" text="VS">
                            <font>
                               <Font size="25.0" />
                            </font>

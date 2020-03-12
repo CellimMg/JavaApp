@@ -48,8 +48,6 @@ public class JogadorDAO {
 
     }
 
-
-
     public String readName(int id) throws SQLException, NotStringException {
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
@@ -65,6 +63,47 @@ public class JogadorDAO {
 
         return j.getNome();
     }
+
+
+
+    public JogadorModel read(int id) {
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        JogadorModel j = new JogadorModel();
+
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM jogador WHERE id = ?");
+
+            stmt.setInt(1, id);
+
+            rs = stmt.executeQuery();
+
+
+            while (rs.next()) {
+
+
+                j.set_id(rs.getInt("id"));
+                j.setNome(rs.getString("nome"));
+                j.setNomeMae(rs.getString("nomeMae"));
+                j.setCidade(rs.getString("cidade"));
+                j.setEstado(rs.getString("estado"));
+                j.setPais(rs.getString("pais"));
+                j.setAltura(rs.getString("altura"));
+                j.setPernaChute(rs.getString("pernaChute"));
+                j.setIdade(rs.getString("idade"));
+                j.setPosicao(rs.getString("posicao"));
+
+
+            }
+        } catch (SQLException | NotStringException | NotNumberException | MoreThanThreeException e) {
+            e.printStackTrace();
+        } finally {
+            ConnectionFactory.closeConnection(connection, stmt);
+        }
+        return j;
+    }
+
 
     public ObservableList<JogadorModel> read() {
         Connection connection = ConnectionFactory.getConnection();

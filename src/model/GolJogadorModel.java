@@ -61,7 +61,7 @@ public class GolJogadorModel {
     }
 
     public void setQtd(String qtd) throws NotNumberException {
-        if(qtd.matches("[0-9]+")) this.qtd = qtd;
+        if(qtd.matches("[1-9]+")) this.qtd = qtd;
         else throw new NotNumberException("Não tem só numeros");
     }
 }

@@ -1,31 +1,27 @@
 package model.DAO;
 
-import controller.Exceptions.NotNumberException;
-import controller.Exceptions.NullException;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import model.EscalacaoModel;
-import model.GolJogadorModel;
 import model.MYSQL.connection.ConnectionFactory;
 import model.PartidaModel;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class EscalacaoDAO {
 
-    public void create(EscalacaoModel e, PartidaModel p){
+    public void create(int id){
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
 
         try {
-            stmt = connection.prepareStatement("INSERT INTO escalacao (id, idPartida) VALUES (?, ?)");
+            stmt = connection.prepareStatement("INSERT INTO escalacao (idPartida) VALUES (?)");
 
-            stmt.setInt(1, e.get_Id());
-            stmt.setInt(2, p.get_id());
+
+            stmt.setInt(1, id);
 
 
 
@@ -37,44 +33,72 @@ public class EscalacaoDAO {
         }
     }
 
-    public List<EscalacaoModel> read(){
+
+
+    public Integer readEscalacaoId(int id){
+        Connection connection = ConnectionFactory.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+
+        try {
+            stmt = connection.prepareStatement("SELECT * FROM escalacao WHERE idPartida = ?");
+            stmt.setInt(1, id);
+
+            rs = stmt.executeQuery();
+
+
+            if(rs.next()){
+                return rs.getInt("id");
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        return null;
+    }
+
+    public ObservableList<EscalacaoModel> read(){
 
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        List<EscalacaoModel> gm = new ArrayList<>();
+        ObservableList<EscalacaoModel> em = FXCollections.observableArrayList();
 
         try {
             stmt = connection.prepareStatement("SELECT * FROM escalacao");
             rs = stmt.executeQuery();
 
             while (rs.next()){
-                GolJogadorModel gj = new GolJogadorModel();
-                gj.set_id(rs.getInt("id"));
-                gj.setIdJogador(rs.getInt("idJogador"));
-                gj.setIdPartida(rs.getInt("idPartida"));
-                gj.setQtd(rs.getString("qtd"));
+                EscalacaoModel gj = new EscalacaoModel();
+                gj.setId(rs.getInt("id"));
+                gj.setIdPartida(rs.getInt("idJogador"));
 
+
+                em.add(gj);
             }
 
-        } catch (SQLException | NotNumberException | NullException e) {
+        } catch (SQLException e){
             e.printStackTrace();
         } finally {
             ConnectionFactory.closeConnection(connection, stmt);
         }
 
-        return gm;
+        return em;
     }
 
-    public void update(GolJogadorModel gm, int id){
+    public void update(EscalacaoModel em, int id){
         Connection connection = ConnectionFactory.getConnection();
 
         PreparedStatement stmt = null;
 
         try {
-            stmt = connection.prepareStatement("UPDATE goljogador SET idJogador = ? WHERE id = ?");
+            stmt = connection.prepareStatement("UPDATE escalacao SET idJogador = ? WHERE id = ?");
 
-            stmt.setInt(1, gm.getIdJogador());
+            stmt.setInt(1, em.getIdPartida());
             stmt.setInt(2, id);
 
             stmt.executeUpdate();
@@ -92,7 +116,7 @@ public class EscalacaoDAO {
 
 
         try {
-            stmt = connection.prepareStatement("DELETE goljogador WHERE id = ?");
+            stmt = connection.prepareStatement("DELETE escalacao WHERE id = ?");
 
             stmt.setInt(1, id);
         } catch (SQLException e) {
