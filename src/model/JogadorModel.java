@@ -39,7 +39,7 @@ public class JogadorModel {
     }
 
     public void setNome(String nome) throws NotStringException {
-        if (nome.matches("^[ a-zA-Z á]*$") || !nome.isEmpty()) this.nome = nome;
+        if (nome.matches("^[a-zA-Z á]*$") && !nome.isEmpty()) this.nome = nome;
         else throw new NotStringException("Não é só String");
     }
 
@@ -67,7 +67,7 @@ public class JogadorModel {
 
     public void setCidade(String cidade) throws NotStringException {
 
-        if (cidade.matches("^[ a-zA-Z á]*$")) this.cidade = cidade;
+        if (cidade.matches("^[ a-zA-Z á]*$") && !cidade.isEmpty()) this.cidade = cidade;
         else throw new NotStringException("Não é só String");
     }
 
@@ -77,7 +77,7 @@ public class JogadorModel {
 
     public void setEstado(String estado) throws NotStringException {
 
-        if (estado.matches("^[ a-zA-Z á]*$")) this.estado = estado;
+        if (estado.matches("^[ a-zA-Z á]*$") && !estado.isEmpty()) this.estado = estado;
         else throw new NotStringException("Não é só String");
 
     }
@@ -88,7 +88,7 @@ public class JogadorModel {
 
     public void setPais(String pais) throws NotStringException {
 
-        if (pais.matches("^[ a-zA-Z á]*$")) this.pais = pais;
+        if (pais.matches("^[ a-zA-Z á]*$") && !pais.isEmpty()) this.pais = pais;
         else throw new NotStringException("Não é só String");
     }
 
@@ -98,7 +98,7 @@ public class JogadorModel {
 
     public void setNomeMae(String nomeMae) throws NotStringException {
 
-        if (nomeMae.matches("^[ a-zA-Z á]*$")) this.nomeMae = nomeMae;
+        if (nomeMae.matches("^[ a-zA-Z á]*$") && !nomeMae.isEmpty()) this.nomeMae = nomeMae;
         else throw new NotStringException("Não é só String");
     }
 

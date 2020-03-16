@@ -80,10 +80,9 @@ public class AddPlayerController {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
             alert.setHeaderText("Ops!");
-            alert.setContentText("Você preencheu um ou mais campos de forma incorreta!\n Lembre-se de que os nomes próprios e de localidades devem possuir apenas letras e espaços!");
+            alert.setContentText("Você preencheu um ou mais campos de forma incorreta!\n Lembre-se de que os nomes próprios e de localidades devem possuir apenas letras e espaços, além disso, lembre-se de não deixar vazio!");
 
             alert.showAndWait();
-            ex.printStackTrace();
         } catch (NotNumberException ex) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
@@ -91,7 +90,6 @@ public class AddPlayerController {
             alert.setContentText("Você preencheu um ou mais campos de forma incorreta!\n Lembre-se de que a altura e a idade devem ser representadas apenas por algarismos.");
 
             alert.showAndWait();
-            ex.printStackTrace();
         } catch (MoreThanThreeException ex) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
@@ -99,7 +97,6 @@ public class AddPlayerController {
             alert.setContentText("Você preencheu um ou mais campos de forma incorreta!\n Lembre-se de que a altura deve ser representada pelo valor em centímetros, dessa forma, 1.92 metros será descrito como 192, por exemplo.");
 
             alert.showAndWait();
-            ex.printStackTrace();
         }catch (NullPointerException ex){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
@@ -139,7 +136,6 @@ public class AddPlayerController {
             alert.setTitle("Erro!");
             alert.setHeaderText("Ops!");
             alert.setContentText("Você precisa selecionar um item da tabela para editar!");
-
             alert.showAndWait();
         }
     }

@@ -186,14 +186,7 @@ public class AddPartidaController {
 
         GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
 
-        if (!tfqtd.getText().matches("[0-9]+")) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Erro!");
-            alert.setHeaderText("Ops!");
-            alert.setContentText("A quantidade de gols deve ser informada apenas com números");
 
-            alert.showAndWait();
-        } else {
             if (tfidGol1.getText().isEmpty()) {
                 if (ifId.getText().isEmpty() || tfqtd.getText().isEmpty() || tfGolsP.getText().isEmpty()) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -232,6 +225,13 @@ public class AddPartidaController {
                             alert.setTitle("Erro!");
                             alert.setHeaderText("Ops!");
                             alert.setContentText("Algo de errado ocorreu!\n A quantidade de gols deve ser apenas números!");
+
+                            alert.showAndWait();
+                        }catch (Exception ex){
+                            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                            alert.setTitle("Erro!");
+                            alert.setHeaderText("Ops!");
+                            alert.setContentText("Algo de errado ocorreu!\n Você deve selecionar um jogador.");
 
                             alert.showAndWait();
                         }
@@ -300,7 +300,6 @@ public class AddPartidaController {
 
                 }
             }
-        }
 
     }
 
@@ -455,35 +454,63 @@ public class AddPartidaController {
 
     @FXML
     protected void btnEdit2(ActionEvent e) {
-        tfidGol1.setText(gols1.get(tableGols.getSelectionModel().getSelectedIndex()).getIdPartida().toString());
-        tfidGol.setText(String.valueOf(gols1.get(tableGols.getSelectionModel().getSelectedIndex())));
-        cbAutorGol.setValue(gols1.get(tableGols.getSelectionModel().getSelectedIndex()).getNome());
-        tfqtd.setText(gols1.get(tableGols.getSelectionModel().getSelectedIndex()).getQtd());
+        try{
+            tfidGol1.setText(gols1.get(tableGols.getSelectionModel().getSelectedIndex()).getIdPartida().toString());
+            tfidGol.setText(String.valueOf(gols1.get(tableGols.getSelectionModel().getSelectedIndex())));
+            cbAutorGol.setValue(gols1.get(tableGols.getSelectionModel().getSelectedIndex()).getNome());
+            tfqtd.setText(gols1.get(tableGols.getSelectionModel().getSelectedIndex()).getQtd());
+        }catch (Exception ex){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText("Ops!");
+            alert.setContentText("Você precisa selecionar um item da tabela para editar!");
+
+            alert.showAndWait();
+            ex.printStackTrace();
+        }
     }
 
     @FXML
     protected void btnDelete(ActionEvent e) throws NotStringException, SQLException, NullException {
-        PartidaDAO partidaDAO = new PartidaDAO();
-        GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
-        PartidaModel partidaModel = partidasList.get(tablePartida.getSelectionModel().getSelectedIndex());
+        try{
+            PartidaDAO partidaDAO = new PartidaDAO();
+            GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
+            PartidaModel partidaModel = partidasList.get(tablePartida.getSelectionModel().getSelectedIndex());
 
-        partidaDAO.delete(partidaModel.get_id());
-        loadTablePartida();
-        loadTableGol();
-        resetTablePartida();
-        resetTableGol();
+            partidaDAO.delete(partidaModel.get_id());
+            loadTablePartida();
+            loadTableGol();
+            resetTablePartida();
+            resetTableGol();
+        }catch (Exception ex){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText("Ops!");
+            alert.setContentText("Você precisa selecionar um item da tabela para excluir!");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
     protected void btnDelete2(ActionEvent e) throws NotStringException, SQLException {
-        GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
-        GolJogadorModel golJogadorModel = gols.get(tablePartida.getSelectionModel().getSelectedIndex());
+        try {
+            GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
+            GolJogadorModel golJogadorModel = gols.get(tablePartida.getSelectionModel().getSelectedIndex());
 
 
-        golJogadorDAO.delete(golJogadorModel.get_id());
+            golJogadorDAO.delete(golJogadorModel.get_id());
 
-        loadTableGol();
-        resetTableGol();
+            loadTableGol();
+            resetTableGol();
+        }catch (Exception ex){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText("Ops!");
+            alert.setContentText("Você precisa selecionar um item da tabela para excluir!");
+
+            alert.showAndWait();
+        }
     }
 
     @FXML
