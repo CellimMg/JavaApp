@@ -23,6 +23,6 @@
       </TableView>
       <ComboBox fx:id="cbJogadores" layoutX="50.0" layoutY="279.0" prefHeight="34.0" prefWidth="330.0" />
       <Button layoutX="440.0" layoutY="242.0" mnemonicParsing="false" onAction="#setPlayer" text="&gt;&gt;&gt;&gt;&gt;" />
-      <Button layoutX="440.0" layoutY="326.0" mnemonicParsing="false" text="&lt;&lt;&lt;&lt;&lt;" />
+      <Button layoutX="440.0" layoutY="326.0" mnemonicParsing="false" onAction="#removePlayer" text="&lt;&lt;&lt;&lt;&lt;" />
    </children>
 </AnchorPane>

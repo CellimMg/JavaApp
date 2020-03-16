@@ -6,7 +6,6 @@ public class EscalacaoEscalacaoModel {
     private Integer idPartida;
     private Integer idJogador;
 
-
     @Override
     public String toString() {
         return "EscalacaoEscalacaoModel{" +

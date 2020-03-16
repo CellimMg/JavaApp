@@ -1,6 +1,7 @@
 package model;
 
 import controller.Exceptions.MoreThanThreeException;
+import controller.Exceptions.MoreThanTwoException;
 import controller.Exceptions.NotNumberException;
 import controller.Exceptions.NotStringException;
 
@@ -25,10 +26,7 @@ public class JogadorModel {
                 '}';
     }
 
-    public JogadorModel(){
-
-    }
-
+    public JogadorModel(){}
 
     public Integer get_id() {
         return _id;
@@ -41,7 +39,7 @@ public class JogadorModel {
     }
 
     public void setNome(String nome) throws NotStringException {
-        if (nome.matches("^[ a-zA-Z á]*$")) this.nome = nome;
+        if (nome.matches("^[ a-zA-Z á]*$") || !nome.isEmpty()) this.nome = nome;
         else throw new NotStringException("Não é só String");
     }
 
@@ -49,10 +47,17 @@ public class JogadorModel {
         return idade;
     }
 
-    public void setIdade(String idade) throws NotNumberException {
+    public void setIdade(String idade) throws MoreThanTwoException, NotNumberException {
 
-        if(idade.matches("[0-9]+")) this.idade = idade;
-        else throw new NotNumberException("Não tem só numeros");
+        if(idade.matches("[0-9]+"))
+        {
+            if(idade.length() <= 2 || idade.length() >= 1){
+                this.idade = idade;
+            }else{
+                throw new MoreThanTwoException("");
+            }
+        }else throw new NotNumberException("Não tem só numeros");
+
 
     }
 

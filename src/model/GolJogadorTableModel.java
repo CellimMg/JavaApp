@@ -4,6 +4,9 @@ package model;
 public class GolJogadorTableModel {
 
     private Integer idPartida;
+    private Integer id;
+    private String nome;
+    private String qtd;
 
     public Integer getIdPartida() {
         return idPartida;
@@ -12,10 +15,6 @@ public class GolJogadorTableModel {
     public void setIdPartida(Integer idPartida) {
         this.idPartida = idPartida;
     }
-
-    private Integer id;
-    private String nome;
-    private String qtd;
 
     public String getQtd() {
         return qtd;

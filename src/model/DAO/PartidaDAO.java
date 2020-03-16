@@ -106,14 +106,14 @@ public class PartidaDAO {
 
             ResultSet rs = stmt.executeQuery();
 
-            rs.next();
-
-            partidaModel.set_id(rs.getInt("id"));
-            partidaModel.setAdversario(rs.getString("adversario"));
-            partidaModel.setGolsTime(rs.getString("golsPro"));
-            partidaModel.setGolsAdv(rs.getString("golsContra"));
-            partidaModel.setLocal(rs.getString("local"));
-            partidaModel.setResultado(rs.getString("resultado"));
+            if(rs.next()){
+                partidaModel.set_id(rs.getInt("id"));
+                partidaModel.setAdversario(rs.getString("adversario"));
+                partidaModel.setGolsTime(rs.getString("golsPro"));
+                partidaModel.setGolsAdv(rs.getString("golsContra"));
+                partidaModel.setLocal(rs.getString("local"));
+                partidaModel.setResultado(rs.getString("resultado"));
+            }
 
         } catch (SQLException | NullException | NotNumberException e) {
             e.printStackTrace();

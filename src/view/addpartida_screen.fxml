@@ -109,7 +109,7 @@
             </Button>
          </children>
       </HBox>
-      <Button layoutX="977.0" layoutY="189.0" mnemonicParsing="false" onAction="#saveGol" style="-fx-background-color: #228B22;" text="Adicionar um gol" textFill="WHITE">
+      <Button layoutX="990.0" layoutY="191.0" mnemonicParsing="false" onAction="#saveGol" style="-fx-background-color: #228B22;" text="SALVAR GOL" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

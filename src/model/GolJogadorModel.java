@@ -10,14 +10,6 @@ public class GolJogadorModel {
     private int idPartida;
     private String qtd;
 
-    public GolJogadorModel(int _id, int idJogador, int idPartida, String qtd) {
-        this._id = _id;
-        this.idJogador = idJogador;
-        this.idPartida = idPartida;
-        this.qtd = qtd;
-    }
-
-
     public GolJogadorModel() {}
 
     @Override

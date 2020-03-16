@@ -39,9 +39,8 @@ public class PartidaModel {
     }
 
     public void setAdversario(String adversario) throws NullException {
-
-        if(adversario == null || adversario.isEmpty()) throw new NullException("a");
-        else this.adversario = adversario;
+        if(adversario.matches("^[a-zA-Z0-9_ ]*$")) this.adversario = adversario;
+        else throw new NullException("");
     }
 
     public String getResultado() {
@@ -50,7 +49,7 @@ public class PartidaModel {
 
     public void setResultado(String resultado) throws NullException {
 
-        if (resultado == null) throw new NullException("a");
+        if (resultado == null) throw new NullException("");
         else this.resultado = resultado;
     }
 
@@ -60,7 +59,7 @@ public class PartidaModel {
 
     public void setLocal(String local) throws NullException {
 
-        if (local == null) throw new NullException("a");
+        if (local == null) throw new NullException("");
         else this.local = local;
     }
 

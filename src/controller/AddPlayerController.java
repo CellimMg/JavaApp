@@ -1,6 +1,7 @@
 package controller;
 
 import controller.Exceptions.MoreThanThreeException;
+import controller.Exceptions.MoreThanTwoException;
 import controller.Exceptions.NotNumberException;
 import controller.Exceptions.NotStringException;
 import javafx.collections.FXCollections;
@@ -16,7 +17,7 @@ import model.JogadorModel;
 public class AddPlayerController {
 
     @FXML
-    protected void initialize(){
+    protected void initialize() throws Exception {
         resetTable();
         cbPosicao.getItems().addAll(
                 "GOL", "LTD", "LTE", "ZAG", "VOL", "MEI", "ATA"
@@ -26,8 +27,7 @@ public class AddPlayerController {
         );
     }
 
-
-    public void resetTable(){
+    public void resetTable() throws Exception {
         JogadorDAO jogadorDAO = new JogadorDAO();
 
         jogadorList = jogadorDAO.read();
@@ -41,7 +41,6 @@ public class AddPlayerController {
         col_posicao.setCellValueFactory(new PropertyValueFactory<>("posicao"));
         col_altura.setCellValueFactory(new PropertyValueFactory<>("altura"));
 
-
         tableViewJogador.setItems(jogadorList);
     }
 
@@ -49,23 +48,33 @@ public class AddPlayerController {
     protected void btSalvarBD(ActionEvent e){
         JogadorModel j = new JogadorModel();
         JogadorDAO jogadorDAO = new JogadorDAO();
-        
-
         try {
             if (!tfId.getText().isEmpty()) j.set_id(Integer.parseInt(tfId.getText()));
-            j.setNome(tfNomeCompleto.getText());
-            j.setNomeMae(tfNomeMae.getText());
+            j.setNome(tfNomeCompleto.getText().toUpperCase());
+            j.setNomeMae(tfNomeMae.getText().toUpperCase());
             j.setIdade(tfIdade.getText());
-            j.setCidade(tfCidade.getText());
-            j.setEstado(tfEstado.getText());
-            j.setPais(tfPais.getText());
+            j.setCidade(tfCidade.getText().toUpperCase());
+            j.setEstado(tfEstado.getText().toUpperCase());
+            j.setPais(tfPais.getText().toUpperCase());
             j.setPosicao(cbPosicao.getSelectionModel().getSelectedItem());
             j.setPernaChute(cbPerna.getSelectionModel().getSelectedItem());
             j.setAltura(tfAltura.getText());
 
-
             if (j.get_id() != null) jogadorDAO.update(j, j.get_id());
             else jogadorDAO.create(j);
+
+            resetTable();
+
+            tfId.clear();
+            tfNomeCompleto.clear();
+            tfNomeMae.clear();
+            tfIdade.clear();
+            tfCidade.clear();
+            tfEstado.clear();
+            tfPais.clear();
+            cbPosicao.setValue(null);
+            cbPerna.setValue(null);
+            tfAltura.clear();
 
         } catch (NotStringException ex) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -98,28 +107,15 @@ public class AddPlayerController {
             alert.setContentText("Você preencheu um ou mais campos de forma incorreta!\n Lembre-se de preencher todos os campos, inclusive POSIÇÃO e PERNA DE CHUTE.");
 
             alert.showAndWait();
-        }catch (Exception ex){
+        }catch (MoreThanTwoException ex){
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
             alert.setHeaderText("Ops!");
-            alert.setContentText("Preencha os campos!");
+            alert.setContentText("A idade deve ter no máximo 2 algarismos e no mínimo 1.");
 
             alert.showAndWait();
-        }finally {
-
-            resetTable();
-
-            tfId.clear();
-            tfNomeCompleto.clear();
-            tfNomeMae.clear();
-            tfIdade.clear();
-            tfCidade.clear();
-            tfEstado.clear();
-            tfPais.clear();
-            cbPosicao.setValue(null);
-            cbPerna.setValue(null);
-            tfAltura.clear();
-
+        } catch (Exception ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -149,8 +145,7 @@ public class AddPlayerController {
     }
 
     @FXML
-    protected void btnDelete(ActionEvent e){
-
+    protected void btnDelete(ActionEvent e) throws Exception {
         try {
             JogadorModel j = jogadorList.get(tableViewJogador.getSelectionModel().getSelectedIndex());
             JogadorDAO jogadorDAO = new JogadorDAO();
@@ -178,7 +173,7 @@ public class AddPlayerController {
     }
 
     @FXML
-    protected void btnLoad(ActionEvent e){
+    protected void btnLoad(ActionEvent e) throws Exception {
         JogadorDAO jogadorDAO = new JogadorDAO();
         System.out.println(jogadorDAO.read());
     }

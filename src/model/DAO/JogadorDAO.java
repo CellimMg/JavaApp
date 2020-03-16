@@ -98,6 +98,8 @@ public class JogadorDAO {
             }
         } catch (SQLException | NotStringException | NotNumberException | MoreThanThreeException e) {
             e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             ConnectionFactory.closeConnection(connection, stmt);
         }
@@ -105,7 +107,7 @@ public class JogadorDAO {
     }
 
 
-    public ObservableList<JogadorModel> read() {
+    public ObservableList<JogadorModel> read() throws Exception {
         Connection connection = ConnectionFactory.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
