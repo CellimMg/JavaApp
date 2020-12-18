@@ -112,7 +112,12 @@ public class AddPlayerController {
 
             alert.showAndWait();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Erro!");
+            alert.setHeaderText("Ops!");
+            alert.setContentText("Por algum motivo não foi possível realizar o cadastro! Verifique se preencheu os campos corretamente e tente novamente!");
+
+            alert.showAndWait();
         }
     }
 

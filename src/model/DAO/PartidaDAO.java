@@ -40,14 +40,15 @@ public class PartidaDAO {
         }
 
         try {
-            stmt = connection.prepareStatement("INSERT INTO partida (adversario, resultado, local, golsPro, golsContra)" +
-                    " VALUES (?, ?, ?, ?, ?)") ;
+            stmt = connection.prepareStatement("INSERT INTO partida (adversario, resultado, local, golsPro, golsContra, deleted)" +
+                    " VALUES (?, ?, ?, ?, ?, ?)") ;
 
             stmt.setString(1, p.getAdversario());
             stmt.setString(2, p.getResultado());
             stmt.setString(3, p.getLocal());
             stmt.setString(4, p.getGolsTime());
             stmt.setString(5, p.getGolsAdv());
+            stmt.setBoolean(6, p.getDeleted());
 
             stmt.executeUpdate();
         } catch (SQLException e) {
@@ -68,7 +69,9 @@ public class PartidaDAO {
         ObservableList<PartidaModel> pm = FXCollections.observableArrayList();
 
         try {
-            stmt = connection.prepareStatement("SELECT * FROM partida");
+            stmt = connection.prepareStatement("SELECT * FROM partida WHERE deleted = ?");
+            stmt.setBoolean(1, false);
+
             rs = stmt.executeQuery();
 
             while (rs.next()) {
@@ -98,10 +101,7 @@ public class PartidaDAO {
         PartidaModel partidaModel = new PartidaModel();
 
         try {
-            stmt = connection.prepareStatement("SELECT * \n" +
-                    "FROM partida\n" +
-                    "ORDER BY id DESC\n" +
-                    "LIMIT 1");
+            stmt = connection.prepareStatement("SELECT * FROM partida WHERE deleted = 0 ORDER BY id DESC LIMIT 1;");
 
 
             ResultSet rs = stmt.executeQuery();
@@ -174,10 +174,11 @@ public class PartidaDAO {
         PreparedStatement stmt = null;
 
         try {
-            stmt = connection.prepareStatement("DELETE FROM partida WHERE id = ?");
+            stmt = connection.prepareStatement("UPDATE partida SET deleted = ? WHERE id = ?");
 
 
-            stmt.setInt(1, id);
+            stmt.setBoolean(1, true);
+            stmt.setInt(2, id);
 
 
             stmt.executeUpdate();

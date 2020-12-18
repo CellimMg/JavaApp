@@ -1,11 +1,11 @@
 CREATE TABLE `poo2`.`jogador` ( `id` INT NOT NULL AUTO_INCREMENT , `nome` VARCHAR(45) NOT NULL , `idade` VARCHAR(2) NOT NULL , `cidade` VARCHAR(45) NOT NULL , `estado` VARCHAR(45) NOT NULL , `pais` VARCHAR(45) NOT NULL , `nomeMae` VARCHAR(45) NOT NULL , `posicao` VARCHAR(3) NOT NULL , `pernaChute` ENUM('E','D','A') NOT NULL , `altura` VARCHAR(3) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 
-CREATE TABLE `poo2`.`partida` ( `id` INT NOT NULL AUTO_INCREMENT , `adversario` VARCHAR(45) NOT NULL , `resultado` ENUM('V','E','D') NOT NULL , `golsPro` VARCHAR(2) NOT NULL , `golsContra` VARCHAR(2) NOT NULL , `local` ENUM('C','F') NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
+CREATE TABLE `poo2`.`partida` ( `id` INT NOT NULL AUTO_INCREMENT , `adversario` VARCHAR(45) NOT NULL , `resultado` ENUM('V','E','D') NOT NULL , `golsPro` VARCHAR(2) NOT NULL , `golsContra` VARCHAR(2) NOT NULL , `local` ENUM('C','F') NOT NULL, `deleted` , PRIMARY KEY (`id`)) ENGINE = InnoDB;
 
 
 CREATE TABLE `poo2`.`goljogador` ( `id` INT NOT NULL AUTO_INCREMENT , `idJogador` INT NOT NULL , `idPartida` INT NOT NULL , `qtd` VARCHAR(2) NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
-ALTER TABLE `goljogador` ADD FOREIGN KEY (`idJogador`) REFERENCES `jogador`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `goljogador` ADD FOREIGN KEY (`idPartida`) REFERENCES `partida`(`id`);
+ALTER TABLE `goljogador` ADD FOREIGN KEY (`idJogador`) REFERENCES `jogador`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; ALTER TABLE `goljogador` ADD FOREIGN KEY (`idPartida`) REFERENCES `partida`(`id`);
 
 
 CREATE TABLE `poo2`.`escalacao` ( `id` INT NOT NULL AUTO_INCREMENT , `idPartida` INT NOT NULL , PRIMARY KEY (`id`)) ENGINE = InnoDB;
@@ -13,4 +13,4 @@ ALTER TABLE `escalacao` ADD FOREIGN KEY (`idPartida`) REFERENCES `partida`(`id`)
 
 
 CREATE TABLE `poo2`.`escalacao_escalacao` ( `idJogador` INT NOT NULL , `idEscalacao` INT NOT NULL , `idPartida` INT NOT NULL ) ENGINE = InnoDB;
-ALTER TABLE `escalacao_escalacao` ADD FOREIGN KEY (`idEscalacao`) REFERENCES `escalacao`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `escalacao_escalacao` ADD FOREIGN KEY (`idJogador`) REFERENCES `jogador`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; ALTER TABLE `escalacao_escalacao` ADD FOREIGN KEY (`idPartida`) REFERENCES `partida`(`id`);
+ALTER TABLE `escalacao_escalacao` ADD FOREIGN KEY (`idEscalacao`) REFERENCES `escalacao`(`id`) ON DELETE CASCADE ON UPDATE CASCADE; ALTER TABLE `escalacao_escalacao` ADD FOREIGN KEY (`idJogador`) REFERENCES `jogador`(`id`) ON DELETE CASCADA ON UPDATE CASCADE; ALTER TABLE `escalacao_escalacao` ADD FOREIGN KEY (`idPartida`) REFERENCES `partida`(`id`);

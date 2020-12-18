@@ -167,9 +167,11 @@ public class AddPartidaController {
 
             gols1.add(gj);
         }
+
         colidgol.setCellValueFactory(new PropertyValueFactory<>("id"));
         colautor.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colQTD.setCellValueFactory(new PropertyValueFactory<>("qtd"));
+
         tableGols.setItems(gols1);
     }
 
@@ -360,6 +362,7 @@ public class AddPartidaController {
             partidaModel.setGolsAdv(tfGolsC.getText());
             partidaModel.setGolsTime(tfGolsP.getText());
             partidaModel.setResultado(cbResultado.getSelectionModel().getSelectedItem());
+            partidaModel.setDeleted(false);
 
         } catch (NullException ex) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -442,8 +445,6 @@ public class AddPartidaController {
             alert.setHeaderText("Ops!");
             alert.setContentText("Você precisa selecionar um item da tabela para editar!");
 
-
-
             ex.printStackTrace();
             alert.showAndWait();
         } finally {
@@ -472,7 +473,8 @@ public class AddPartidaController {
 
     @FXML
     protected void btnDelete(ActionEvent e) throws NotStringException, SQLException, NullException {
-        try{
+
+        if(tablePartida.getSelectionModel().getSelectedItem() != null){
             PartidaDAO partidaDAO = new PartidaDAO();
             GolJogadorDAO golJogadorDAO = new GolJogadorDAO();
             PartidaModel partidaModel = partidasList.get(tablePartida.getSelectionModel().getSelectedIndex());
@@ -482,7 +484,7 @@ public class AddPartidaController {
             loadTableGol();
             resetTablePartida();
             resetTableGol();
-        }catch (Exception ex){
+        }else{
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Erro!");
             alert.setHeaderText("Ops!");
@@ -490,6 +492,8 @@ public class AddPartidaController {
 
             alert.showAndWait();
         }
+
+
     }
 
     @FXML

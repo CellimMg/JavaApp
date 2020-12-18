@@ -34,7 +34,7 @@ public class FirstScreenController {
     public void resetTable(){
 
 
-        Image image2 = new Image("file:\\\\\\C:\\Users\\cello\\IdeaProjects\\JavaAppe\\src\\view\\Images\\LAGalaxy2016.png");
+        Image image2 = new Image("file:\\\\\\C:\\Users\\cello\\IdeaProjects\\ProjetoPoo2\\src\\view\\Images\\LAGalaxy2016.png");
         imgHeader.setImage(image2);
 
         PartidaDAO partidaDAO = new PartidaDAO();
@@ -42,12 +42,14 @@ public class FirstScreenController {
 
         if(partidaModel.get_id() != null){
 
-            Image image = new Image("file:\\\\\\C:\\Users\\cello\\IdeaProjects\\JavaAppe\\src\\view\\Images\\LAGalaxy2016.png");
-            Image image3 = new Image("file:\\\\\\C:\\Users\\cello\\IdeaProjects\\JavaAppe\\src\\view\\Images\\unknown-png.png");
+            Image image = new Image("file:\\\\\\C:\\Users\\cello\\IdeaProjects\\ProjetoPoo2\\src\\view\\Images\\LAGalaxy2016.png");
+            Image image3 = new Image("file:\\\\\\C:\\Users\\cello\\IdeaProjects\\ProjetoPoo2\\src\\view\\Images\\unknown-png.png");
 
             imgGame21.setImage(image3);
 
             imgGame2.setImage(image);
+
+            imgCenter.setImage(null);
 
             partidaModel = partidaDAO.getLast();
 
@@ -70,8 +72,14 @@ public class FirstScreenController {
             lblRESULTADO.setAlignment(Pos.CENTER);
         }else{
 
-            Image image = new Image("file:\\\\\\C:\\Users\\cello\\IdeaProjects\\JavaAppe\\src\\view\\Images\\LAGalaxy2016.png");
+            Image image = new Image("file:\\\\\\C:\\Users\\cello\\IdeaProjects\\ProjetoPoo2\\src\\view\\Images\\LAGalaxy2016.png");
 
+
+            lblTime.setText("");
+            lblPlacar1.setText("");
+            lblTime2.setText("");
+            lblPlacar2.setText("");
+            lblRESULTADO.setAlignment(Pos.CENTER);
             imgCenter.setImage(image);
 
             lblLastGame.setText("Vamos vencer a primeira partida!");

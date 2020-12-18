@@ -5,7 +5,6 @@ import controller.Exceptions.NotNumberException;
 import controller.Exceptions.NotStringException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
 import model.JogadorModel;
 import model.MYSQL.connection.ConnectionFactory;
 
@@ -13,8 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class JogadorDAO {
 

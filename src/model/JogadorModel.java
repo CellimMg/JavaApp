@@ -1,9 +1,6 @@
 package model;
 
-import controller.Exceptions.MoreThanThreeException;
-import controller.Exceptions.MoreThanTwoException;
-import controller.Exceptions.NotNumberException;
-import controller.Exceptions.NotStringException;
+import controller.Exceptions.*;
 
 public class JogadorModel {
 
@@ -51,10 +48,10 @@ public class JogadorModel {
 
         if(idade.matches("[0-9]+"))
         {
-            if(idade.length() <= 2 || idade.length() >= 1){
+            if(idade.length() == 2 || idade.length() == 1){
                 this.idade = idade;
             }else{
-                throw new MoreThanTwoException("");
+                throw new MoreThanTwoException("IDADE ERRADA");
             }
         }else throw new NotNumberException("Não tem só numeros");
 
@@ -106,16 +103,24 @@ public class JogadorModel {
         return posicao;
     }
 
-    public void setPosicao(String posicao) {
-        this.posicao = posicao;
+    public void setPosicao(String posicao) throws NullException {
+        if (posicao == null){
+            throw new NullException("Nulo!");
+        }else {
+            this.posicao = posicao;
+        }
     }
 
     public String getPernaChute() {
         return pernaChute;
     }
 
-    public void setPernaChute(String pernaChute) {
-        this.pernaChute = pernaChute;
+    public void setPernaChute(String pernaChute) throws NullException {
+       if (pernaChute == null){
+           throw new NullException("Nulo!");
+       }else {
+           this.pernaChute = pernaChute;
+       }
     }
 
     public String getAltura() {

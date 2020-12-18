@@ -1,12 +1,9 @@
 package model.DAO;
 
-import controller.Exceptions.MoreThanThreeException;
-import controller.Exceptions.NotNumberException;
-import controller.Exceptions.NotStringException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.EscalacaoEscalacaoModel;
-import model.JogadorModel;
 import model.MYSQL.connection.ConnectionFactory;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

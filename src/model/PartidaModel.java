@@ -6,11 +6,19 @@ import controller.Exceptions.NullException;
 public class PartidaModel {
 
     private Integer _id;
-
+    private Boolean deleted;
     private String adversario, resultado, local, golsTime, golsAdv;
 
     public PartidaModel() {
 
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -21,7 +29,8 @@ public class PartidaModel {
                 ", resultado='" + resultado + '\'' +
                 ", local='" + local + '\'' +
                 ", golsTime=" + golsTime +
-                ", golsAdv=" + golsAdv
+                ", golsAdv=" + golsAdv +
+                ", deleted= " + deleted
                 ;
     }
 

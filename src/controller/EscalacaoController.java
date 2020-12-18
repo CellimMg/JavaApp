@@ -56,7 +56,6 @@ public class EscalacaoController {
                         }
                     }
                 }
-                System.out.println(jogadores);
 
                 for (int x = 0; x < jogadores.toArray().length; x++) {
                     nomeJogador.add(jogadores.get(x).getNome());
